@@ -20,14 +20,12 @@
         .left-nav {
             width: 30%;
             height: 100vh;
-            overflow: auto;
         }
 
         .right-tab {
             width: 70%;
             height: 100vh;
             overflow: auto;
-            background: grey;
         }
 
         .nav-top {
@@ -45,6 +43,39 @@
             margin-left: 0.04rem;
             margin-right: 0.35rem;
         }
+
+        .list-content {
+            width: 100%;
+            height: 100%;
+            overflow-y: scroll;
+            background: grey;
+        }
+
+        .list-one,
+        .list-two {
+            width: 100%;
+            margin-bottom: 0.05rem;
+        }
+
+        .list-three {
+            width: 100%;
+        }
+
+        .list-item {
+            width: 100%;
+            padding: 0.03rem 0;
+        }
+
+        .icons {
+            width: 0.12rem;
+            height: 0.12rem;
+            margin-left: 0.05rem;
+            margin-right: 0.08rem;
+        }
+
+        .active {
+            background: #C0C0C0;
+        }
     </style>
 </head>
 
@@ -57,20 +88,31 @@
                 <span class="fz-10 c-ff">设置</span>
             </div>
             <div class="list-content">
-                <div class="list-one flex col fl-align">
-
+                <div class="list-one flex col fl-align b-ff">
+                    <div class="list-item flex fl-align" v-for="item in list_one" @click="choice_one(item.id)"
+                        :class="one==item.id?'active':''">
+                        <img :src="item.icon" class="icons">
+                        <span class="fz-10 c-00">{{item.name}}</span>
+                    </div>
                 </div>
-                <div class="list-two flex col fl-align">
-                    
+                <div class="list-two flex col fl-align b-ff">
+                    <div class="list-item flex fl-align" v-for="item in list_two" @click="choice_two(item.id)" :class="two==item.id?'active':''">
+                        <img :src="item.icon" class="icons">
+                        <span class="fz-10 c-00">{{item.name}}</span>
+                    </div>
                 </div>
-                <div class="list-three flex col fl-align">
-
+                <div class="list-three flex col fl-align b-ff">
+                    <div class="list-item flex fl-align" v-for="item in list_three"
+                        @click="choice_three(item.id)" :class="three==item.id?'active':''">
+                        <img :src="item.icon" class="icons">
+                        <span class="fz-10 c-00">{{item.name}}</span>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- 右边tab内容 -->
         <div class="right-tab">
-
+            
         </div>
     </div>
 </body>
@@ -81,60 +123,87 @@
             list_one: [
                 {
                     id: 0,
-                    icon: '',
-                    name: '交班'
+                    icon: 'img/jiao.png',
+                    name: '交班',
+                    path:''
                 },
                 {
                     id: 1,
-                    icon: '',
-                    name: '店铺信息'
+                    icon: 'img/shop.png',
+                    name: '店铺信息',
+                    path:''
                 }, {
                     id: 2,
-                    icon: '',
-                    name: '员工管理'
+                    icon: 'img/manage.png',
+                    name: '员工管理',
+                    path:''
                 }
             ],
             list_two: [
                 {
                     id: 0,
-                    icon: '',
-                    name: '收款方式'
+                    icon: 'img/gathering.png',
+                    name: '收款方式',
+                    path:''
                 }, {
                     id: 1,
-                    icon: '',
-                    name: '外卖'
+                    icon: 'img/takeout.png',
+                    name: '外卖',
+                    path:''
                 }, {
                     id: 2,
-                    icon: '',
-                    name: '扫码点餐'
+                    icon: 'img/scan.png',
+                    name: '扫码点餐',
+                    path:''
                 }, {
                     id: 3,
-                    icon: '',
-                    name: '副屏广告'
+                    icon: 'img/fu.png',
+                    name: '副屏广告',
+                    path:''
                 }, {
                     id: 4,
-                    icon: '',
-                    name: '打印机'
+                    icon: 'img/print.png',
+                    name: '打印机',
+                    path:''
                 }
             ],
             list_three: [
                 {
                     id: 0,
-                    icon: '',
+                    icon: 'img/general.png',
                     name: '通用'
                 },
                 {
                     id: 1,
-                    icon: '',
+                    icon: 'img/update.png',
                     name: '更新数据'
                 }, {
                     id: 2,
-                    icon: '',
+                    icon: 'img/about.png',
                     name: '关于'
                 }
-            ]
+            ],
+            one: 0,
+            two: null,
+            three: null,
         },
-        methods: {},
+        methods: {
+            choice_one: function (e) {
+                this.two = null
+                this.three = null
+                this.one = e
+            },
+            choice_two: function (e) {
+                this.one = null
+                this.three = null
+                this.two = e
+            },
+            choice_three: function (e) {
+                this.one = null
+                this.two = null
+                this.three = e
+            }
+        },
         created: function () {
 
         }
