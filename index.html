@@ -76,6 +76,113 @@
         .active {
             background: #C0C0C0;
         }
+
+
+        /* tab */
+        #jiao {
+            width: 100%;
+            height: 100%;
+        }
+
+        .tab-top {
+            width: 100%;
+            height: 0.2rem;
+            background: #0099FF;
+            text-align: center;
+            line-height: 0.2rem;
+        }
+
+        .tab-content {
+            width: 100%;
+            height: 100%;
+            overflow-y: scroll;
+        }
+
+        .line {
+            margin-left: 0.1rem;
+            margin-top: 0.06rem;
+        }
+
+        .keep {
+            width: 0.8rem;
+            display: inline-block;
+        }
+
+        .eduit-one,
+        .eduit-two {
+            display: inline-block;
+            width: 0.1rem;
+            height: 0.1rem;
+            background: url(img/eduit.png) no-repeat center;
+            background-size: 100%;
+        }
+
+        .pay-way {
+            margin-left: 0.1rem;
+            margin-top: 0.06rem;
+            width: 92%;
+            height: 1.2rem;
+            background: #C0C0C0;
+            margin-bottom: 0.05rem;
+        }
+
+        .title-line {
+            width: 100%;
+            padding: 0.03rem 0;
+            border-bottom: 0.001rem solid #999999;
+        }
+
+        .title-line>span:first-child {
+            margin-left: 0.05rem;
+        }
+
+        .title-line>span:last-child {
+            margin-right: 0.05rem;
+        }
+
+        .pay-list-item {
+            margin-top: 0.05rem;
+        }
+
+        .pay-list-item>span:first-child {
+            margin-left: 0.05rem;
+        }
+
+        .pay-list-item>span:last-child {
+            margin-right: 0.05rem;
+        }
+
+        .Btn-line {
+            width: 92%;
+            justify-content: flex-end;
+            margin-left: 0.1rem;
+            margin-top: 0.04rem;
+        }
+
+        .Btn-line>span {
+            width: 0.5rem;
+            text-align: center;
+            padding: 0.03rem 0;
+            border-radius: 0.04rem;
+        }
+
+        .exit {
+            background: grey;
+            margin-right: 0.1rem;
+        }
+
+        .change {
+            background: #FF6600;
+        }
+
+        .choice-line{
+            margin-left: 0.1rem; 
+        }
+
+        .choice-line>input{
+            width: 0.1rem;
+            height: 0.1rem;
+        }
     </style>
 </head>
 
@@ -96,14 +203,15 @@
                     </div>
                 </div>
                 <div class="list-two flex col fl-align b-ff">
-                    <div class="list-item flex fl-align" v-for="item in list_two" @click="choice_two(item.id)" :class="two==item.id?'active':''">
+                    <div class="list-item flex fl-align" v-for="item in list_two" @click="choice_two(item.id)"
+                        :class="two==item.id?'active':''">
                         <img :src="item.icon" class="icons">
                         <span class="fz-10 c-00">{{item.name}}</span>
                     </div>
                 </div>
                 <div class="list-three flex col fl-align b-ff">
-                    <div class="list-item flex fl-align" v-for="item in list_three"
-                        @click="choice_three(item.id)" :class="three==item.id?'active':''">
+                    <div class="list-item flex fl-align" v-for="item in list_three" @click="choice_three(item.id)"
+                        :class="three==item.id?'active':''">
                         <img :src="item.icon" class="icons">
                         <span class="fz-10 c-00">{{item.name}}</span>
                     </div>
@@ -112,8 +220,52 @@
         </div>
         <!-- 右边tab内容 -->
         <div class="right-tab">
-            
+            <div id="jiao" class="flex col">
+                <div class="tab-top fz-10 c-ff">交班</div>
+                <div class="tab-content flex col">
+                    <div class="line fz-10">
+                        <span class="c-00">当班人员：</span>
+                        <span>店铺创建者</span>
+                    </div>
+                    <div class="line fz-10">
+                        <span class="c-00">当班日期：</span>
+                        <span>11-21 17：04至11-25 16：57</span>
+                    </div>
+                    <div class="line fz-10">
+                        <span class="c-00">上班备用金：</span>
+                        <span class="keep">0.00</span>
+                        <i class="eduit-one"></i>
+                    </div>
+                    <div class="line fz-10">
+                        <span class="c-00">预留备用金：</span>
+                        <span class="keep">0.00</span>
+                        <i class="eduit-two"></i>
+                    </div>
+                    <div class="pay-way">
+                        <div class="title-line flex fl-align fl-jsb fz-10 c-00">
+                            <span>支付方式（笔数）</span>
+                            <span>金额</span>
+                        </div>
+                        <div class="pay-list-item flex fl-align fl-jsb fz-10" v-for="item in paylist">
+                            <span class="c-00">{{item.name}}</span>
+                            <span class="c-33">{{item.money}}</span>
+                        </div>
+                    </div>
+                    <!-- 多选框 -->
+                    <div class="choice-line flex fl-align">
+                        <input type="checkbox">
+                        <label for="" class="fz-10 c-00">打印账单列表</label>
+                        <input type="checkbox">
+                        <label for="" class="fz-10 c-00">打印销售列表</label>
+                    </div>
+                    <div class="Btn-line flex fl-align fz-10">
+                        <span class="exit">退出</span>
+                        <span class="change">交班</span>
+                    </div>
+                </div>
+            </div>
         </div>
+        
     </div>
 </body>
 <script>
@@ -125,18 +277,18 @@
                     id: 0,
                     icon: 'img/jiao.png',
                     name: '交班',
-                    path:''
+                    path: ''
                 },
                 {
                     id: 1,
                     icon: 'img/shop.png',
                     name: '店铺信息',
-                    path:''
+                    path: ''
                 }, {
                     id: 2,
                     icon: 'img/manage.png',
                     name: '员工管理',
-                    path:''
+                    path: ''
                 }
             ],
             list_two: [
@@ -144,27 +296,27 @@
                     id: 0,
                     icon: 'img/gathering.png',
                     name: '收款方式',
-                    path:''
+                    path: ''
                 }, {
                     id: 1,
                     icon: 'img/takeout.png',
                     name: '外卖',
-                    path:''
+                    path: ''
                 }, {
                     id: 2,
                     icon: 'img/scan.png',
                     name: '扫码点餐',
-                    path:''
+                    path: ''
                 }, {
                     id: 3,
                     icon: 'img/fu.png',
                     name: '副屏广告',
-                    path:''
+                    path: ''
                 }, {
                     id: 4,
                     icon: 'img/print.png',
                     name: '打印机',
-                    path:''
+                    path: ''
                 }
             ],
             list_three: [
@@ -186,6 +338,17 @@
             one: 0,
             two: null,
             three: null,
+            paylist: [
+                {
+                    name: '支付宝支付(2笔)',
+                    money: '0.00'
+                },
+                {
+                    name: '微信支付',
+                    money: '0.00'
+                }
+
+            ]
         },
         methods: {
             choice_one: function (e) {
