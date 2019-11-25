@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <script src="js/flexible.min.js"></script>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/icon.css">
+    <style>
+        #logins {
+            width: 100%;
+            min-height: 100vh;
+            background: black
+        }
+
+        .title {
+            margin-top: 0.1rem;
+            margin-bottom: 0.05rem;
+        }
+
+        .content {
+            width: 3.1rem;
+            height: 2.2rem;
+            border-radius: 0.04rem;
+        }
+
+        .left,
+        .right {
+            width: 50%;
+            height: 100%;
+        }
+
+        .circle {
+            width: 0.8rem;
+            height: 0.8rem;
+            border: 0.01rem solid #999999;
+            border-radius: 50%;
+            margin-top: 0.4rem;
+            text-align: center;
+            line-height: 0.8rem;
+        }
+
+
+
+        .username,
+        .pwd {
+            width: 1rem;
+            height: 0.2rem;
+            font-size: 0.1rem;
+            background: #999999;
+            text-align: center;
+            border-radius: 0.04rem;
+        }
+
+        .username::placeholder,
+        .pwd::placeholder {
+            color: black;
+        }
+
+        .login-Btn {
+            width: 1.32rem;
+            height: 0.2rem;
+            text-align: center;
+            line-height: 0.2rem;
+            background: chocolate;
+            border-radius: 0.04rem;
+            margin-top: 0.2rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .version {
+            margin-top: 0.1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="logins" class="flex col fl-align">
+        <span class="title c-ff fz-10">点佳</span>
+        <div class="content b-ff flex fl-align">
+            <div class="left flex col fl-align">
+                <div class="circle fz-10">点佳服务平台</div>
+            </div>
+            <div class="right flex col fl-align">
+                <div class="line flex fl-align" style="margin-top: 0.4rem;margin-bottom: 0.2rem;">
+                    <span class="fz-10">用户名:</span>
+                    <input type="text" placeholder="请输入用户名" class="username">
+                </div>
+                <div class="line flex fl-align">
+                    <span class="fz-10">密&nbsp;&nbsp;&nbsp;码:</span>
+                    <input type="text" placeholder="请输入密码" class="pwd" style="margin-left: 0.01rem;">
+                </div>
+                <div class="login-Btn fz-10 c-ff">登录</div>
+                <div class="forget-btn fz-10" style="color: #3399FF;">忘记密码</div>
+            </div>
+        </div>
+        <span class="version c-ff fz-5">v2.5.6.4</span>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script src="js/jquery-3.0.0.min.js"></script>
+<script>
+    new Vue({
+        el: "#logins",
+        data: {},
+        methods: {},
+        created: function () {
+
+        },
+        mounted: function () {
+
+        }
+    })
+</script>
+
+</html>
