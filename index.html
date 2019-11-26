@@ -51,19 +51,15 @@
             background: grey;
         }
 
-        .list-one,
-        .list-two {
-            width: 100%;
-            margin-bottom: 0.05rem;
-        }
-
-        .list-three {
-            width: 100%;
-        }
-
         .list-item {
             width: 100%;
             padding: 0.03rem 0;
+            border: none;
+        }
+
+        .list-item:nth-child(3),
+        .list-item:nth-child(8) {
+            margin-bottom: 0.05rem;
         }
 
         .icons {
@@ -77,32 +73,8 @@
             background: #C0C0C0;
         }
 
-
         /* tab */
-        .tab-top {
-            width: 100%;
-            height: 0.2rem;
-            background: #0099FF;
-            text-align: center;
-            line-height: 0.2rem;
-            justify-content: flex-end;
-        }
-
-        .add-btn {
-            display: block;
-            width: 0.28rem;
-            height: 0.14rem;
-            background: #fff;
-            line-height: 0.14rem;
-            border-radius: 0.03rem;
-            margin-right: 0.05rem;
-            margin-left: 0.8rem;
-        }
-        .content{
-            width: 100%;
-            height: 100%;
-            overflow-y: scroll;
-        }
+        
     </style>
 </head>
 
@@ -115,43 +87,16 @@
                 <span class="fz-10 c-ff">设置</span>
             </div>
             <div class="list-content">
-                <div class="list-one flex col fl-align b-ff">
-                    <div class="list-item flex fl-align" v-for="item in list_one" @click="choice_one(item.id)"
-                        :class="one==item.id?'active':''">
-                        <img :src="item.icon" class="icons">
-                        <span class="fz-10 c-00">{{item.name}}</span>
-                    </div>
-                </div>
-                <div class="list-two flex col fl-align b-ff">
-                    <div class="list-item flex fl-align" v-for="item in list_two" @click="choice_two(item.id)"
-                        :class="two==item.id?'active':''">
-                        <img :src="item.icon" class="icons">
-                        <span class="fz-10 c-00">{{item.name}}</span>
-                    </div>
-                </div>
-                <div class="list-three flex col fl-align b-ff">
-                    <div class="list-item flex fl-align" v-for="item in list_three" @click="choice_three(item.id)"
-                        :class="three==item.id?'active':''">
-                        <img :src="item.icon" class="icons">
-                        <span class="fz-10 c-00">{{item.name}}</span>
-                    </div>
+                <div class="list-item flex fl-align b-ff" v-for="item in list" @click="choice(item)"
+                    :class="choices==item.id?'active':''">
+                    <img :src="item.icon" class="icons">
+                    <span class="fz-10 c-00">{{item.name}}</span>
                 </div>
             </div>
         </div>
         <!-- 右边tab内容 -->
-        <div class="right-tab"> 
-            <div id="manage" class="flex col fl-align">
-                <div class="tab-top flex fl-align fz-10">
-                    <span class="c-ff">员工管理</span>
-                    <span class="add-btn" style="color: #0066CC;">添加</span>
-                </div>
-                <div class="content flex col fl-align">
-                    <!-- <div class="">
-
-                    </div> -->
-
-                </div>
-            </div>
+        <div class="right-tab">
+            
         </div>
     </div>
 </body>
@@ -159,7 +104,7 @@
     new Vue({
         el: '#setting',
         data: {
-            list_one: [
+            list: [
                 {
                     id: 0,
                     icon: 'img/jiao.png',
@@ -176,55 +121,52 @@
                     icon: 'img/manage.png',
                     name: '员工管理',
                     path: ''
-                }
-            ],
-            list_two: [
+                },
                 {
-                    id: 0,
+                    id: 3,
                     icon: 'img/gathering.png',
                     name: '收款方式',
                     path: ''
                 }, {
-                    id: 1,
+                    id: 4,
                     icon: 'img/takeout.png',
                     name: '外卖',
                     path: ''
                 }, {
-                    id: 2,
+                    id: 5,
                     icon: 'img/scan.png',
                     name: '扫码点餐',
                     path: ''
                 }, {
-                    id: 3,
+                    id: 6,
                     icon: 'img/fu.png',
                     name: '副屏广告',
                     path: ''
                 }, {
-                    id: 4,
+                    id: 7,
                     icon: 'img/print.png',
                     name: '打印机',
                     path: ''
-                }
-            ],
-            list_three: [
-                {
-                    id: 0,
-                    icon: 'img/general.png',
-                    name: '通用'
                 },
                 {
-                    id: 1,
+                    id: 8,
+                    icon: 'img/general.png',
+                    name: '通用',
+                    path: ''
+                },
+                {
+                    id: 9,
                     icon: 'img/update.png',
-                    name: '更新数据'
+                    name: '更新数据',
+                    path: ''
                 }, {
-                    id: 2,
+                    id: 10,
                     icon: 'img/about.png',
-                    name: '关于'
+                    name: '关于',
+                    path: ''
                 }
             ],
-            one: 0,
-            two: null,
-            three: null,
+            choices: 0,
             paylist: [
                 {
                     name: '支付宝支付(2笔)',
@@ -234,25 +176,18 @@
                     name: '微信支付',
                     money: '0.00'
                 }
-
             ]
         },
         methods: {
-            choice_one: function (e) {
-                this.two = null
-                this.three = null
-                this.one = e
-            },
-            choice_two: function (e) {
-                this.one = null
-                this.three = null
-                this.two = e
-            },
-            choice_three: function (e) {
-                this.one = null
-                this.two = null
-                this.three = e
+            choice: function (e) {
+                var that = this
+                var c = that.choices
+                var id = e.id
+                if (c != id) {
+                    that.choices = id
+                }
             }
+
         },
         created: function () {
 
