@@ -97,10 +97,12 @@
 				background: #C0C0C0;
 				margin-left: 0.1rem;
 			}
-			.open-line>span{
+			
+			.open-line>span {
 				margin-left: 0.05rem;
 			}
-			.open-line>div{
+			
+			.open-line>div {
 				margin-right: 0.05rem;
 			}
 		</style>
@@ -130,8 +132,19 @@
 						<van-switch v-model="checked" />
 					</div>
 					<span class="fz-7 c-00" style="margin-left: 0.1rem;margin-top: 0.06rem;margin-bottom: 0.02rem;">外卖平台设置</span>
-					<div class="">
-						
+					<div class="line-two fz-7">
+						<div>
+							<span class="c-00">绑定美团外卖账号</span>
+							<p class="fz-7"></p>
+						</div>
+						<i></i>
+					</div>
+					<div class="line-two fz-7">
+						<div>
+							<span class="c-00">绑定饿了么账号</span>
+							<p class="fz-7"></p>
+						</div>
+						<i></i>
 					</div>
 				</div>
 			</div>
@@ -227,7 +240,7 @@
 
 			},
 			created: function() {
-
+				//				$('.right-tab').load('../tabs/jiao.html')
 			}
 		})
 	</script>
