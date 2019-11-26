@@ -79,8 +79,12 @@ input {
 }
 
 /* 文字大小 */
+
 .fz-5{
     font-size: 0.05rem;
+}
+.fz-7{
+    font-size: 0.07rem;
 }
 
 .fz-10{
