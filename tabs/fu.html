@@ -1,0 +1,98 @@
+<style>
+    #fu {
+        width: 100%;
+        height: 100%;
+    }
+
+    .tab-top {
+        width: 100%;
+        height: 0.2rem;
+        background: #0099FF;
+        text-align: center;
+        line-height: 0.2rem;
+    }
+
+    .content {
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+    .open-line {
+        width: 92%;
+        padding: 0.05rem 0;
+        margin-top: 0.05rem;
+        background: #C0C0C0;
+        margin-left: 0.1rem;
+    }
+
+    .open-line>span {
+        margin-left: 0.05rem;
+    }
+
+    .open-line>div {
+        margin-right: 0.05rem;
+    }
+
+    .second {
+        width: 92%;
+        background: #C0C0C0;
+        margin-left: 0.1rem;
+        margin-top: 0.02rem;
+    }
+
+    .s-left {
+        margin: 0 0.05rem;
+    }
+
+    .s-left>img {
+        width: 1.4rem;
+        height: 1rem;
+        margin-top: 0.18rem;
+        margin-bottom: 0.04rem;
+    }
+
+    .s-right .code {
+        width: 0.77rem;
+        height: 0.77rem;
+        margin: 0.02rem 0;
+    }
+
+    .s-right .code>img {
+        width: 0.72rem;
+        height: 0.72rem;
+        margin: auto;
+    }
+</style>
+<div id="fu" class="flex col">
+    <div class="tab-top fz-10 c-ff">副屏广告</div>
+    <div class="content flex col">
+        <div class="open-line flex fl-align fl-jsb">
+            <span class="c-00 fz-7">副屏广告</span>
+            <van-switch v-model="checked" />
+        </div>
+        <p class="fz-7 c-00" style="width: 92%;margin-left: 0.1rem;margin-top: 0.02rem;">
+            开启后，副屏可以根据上传的图片进行展示</p>
+        <div class="open-line flex fl-align fl-jsb">
+            <span class="c-00 fz-7">轮播间隔时间</span>
+            <span class="fz-7 c-00" style="width: 0.1rem;margin-right: 0.05rem;">3</span>
+        </div>
+        <p class="fz-7 c-00" style="width: 92%;margin-left: 0.1rem;margin-top: 0.02rem;">
+            当上传的广告图片大于1张时，将会进行轮播展示</p>
+        <span class="fz-10 c-00" style="margin-left: 0.1rem;margin-top: 0.1rem;">副屏广告预览</span>
+        <div class="second flex">
+            <div class="s-left flex col fl-align">
+                <img src="img/1.jpeg">
+                <span class="fz-7" style="margin-bottom: 0.05rem;">提示：该功能仅试用与<span
+                        style="color: red;">双屏机型</span></span>
+            </div>
+            <div class="s-right flex col fl-align fz-7">
+                <span style="margin-top:0.3rem;">微信扫码，上传广告图片</span>
+                <div class="code b-ff flex col fl-align">
+                    <img src="img/2.jpg">
+                </div>
+                <span>建议尺寸：<span style="color: red;">1366*768</span></span>
+            </div>
+        </div>
+    </div>
+</div>
