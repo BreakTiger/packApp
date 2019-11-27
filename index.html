@@ -76,7 +76,7 @@
 		}
 
 		/* tab */
-		#print {
+		#general {
 			width: 100%;
 			height: 100%;
 		}
@@ -86,30 +86,64 @@
 			height: 0.2rem;
 			background: #0099FF;
 			line-height: 0.2rem;
-			justify-content: flex-end;
-		}
-
-		.p_add {
-			width: 0.2rem;
-			height: 0.12rem;
 			text-align: center;
-			line-height: 0.12rem;
-			border-radius: 0.02rem;
-			margin-right: 0.05rem;
-			margin-left: 1rem;
 		}
 
-		.state {
-			width: 92%;
+		.content {
+			width: 100%;
+			height: 100%;
+			overflow-y: scroll;
+		}
+
+		.twos-line {
+			width: 96%;
 			background: #C0C0C0;
-			margin-top: 0.1rem;
+			margin-top: 0.04rem;
+			margin-left: 0.05rem;
 		}
 
-		.state>p {
-			width: 95%;
-			margin: 0 auto;
-			margin-top: 0.02rem;
-			margin-bottom: 0.02rem;
+		.item-line-one {
+			width: 100%;
+			padding: 0.04rem 0;
+		}
+
+		.item-line-two {
+			padding: 0.04rem 0;
+		}
+
+		.go-icon {
+			display: block;
+			width: 0.1rem;
+			height: 0.1rem;
+			background: url(img/go.png) no-repeat center;
+			background-size: 100%;
+		}
+
+		.g-list-item {
+			width: 96%;
+			padding: 0.04rem 0;
+			background: #C0C0C0;
+			margin-left: 0.05rem;
+			margin-top: 0.04rem;
+		}
+
+		.g-list-item .left {
+			width: 75%;
+			margin-left: 0.05rem;
+		}
+
+		.g-list-item .right {
+			width: 18%;
+			height: 100%;
+			justify-content: center;
+		}
+
+		.item-line-two {
+			width: 96%;
+			padding: 0.04rem 0;
+			background: #C0C0C0;
+			margin-left: 0.05rem;
+			margin-top: 0.04rem;
 		}
 	</style>
 </head>
@@ -132,16 +166,128 @@
 		</div>
 		<!-- 右边tab内容 -->
 		<div class="right-tab">
-			<div id="print" class="flex col fl-align">
-				<div class="tab-top fz-10 flex fl-align">
-					<span class="c-ff">打印机</span>
-					<span class="p_add b-ff fz-7 c-6C">添加</span>
-				</div>
-				<div class="state flex col fz-7">
-					<p class="c-00">前台打印机</p>
-					<p> 接口类型：自带小票</p>
-					<p>打印类型：下单，买单，结账，交班，充值，外卖，兑换，次卡销售</p>
-					<p>自定义打印：店铺电话，店铺地址，店铺描述，店铺头像，店铺二维码，商品标题，商品单行，商品聚合</p>
+			<div id="general" class="flex col">
+				<div class="tab-top fz-10 c-ff">通用</div>
+				<div class="content flex col fl-align">
+					<div class="twos-line flex col">
+						<div class="item-line-one flex fl-align fl-jsb">
+							<span class="fz-7 c-00" style="margin-left: 0.04rem;">牌号</span>
+							<van-switch v-model="checked" style="margin-right: 0.04rem;" />
+						</div>
+						<div class="item-line-two flex fl-align fl-jsb">
+							<div class="flex col fz-7" style="width: 75%;">
+								<span class="c-00">牌号生产方式</span>
+								<span>自动生成：系统每天凌晨4点，从牌号1开始递增生成默认牌号</span>
+							</div>
+							<div class="flex fz-7">
+								<span>手动输入</span>
+								<i class="go-icon"></i>
+							</div>
+						</div>
+					</div>
+					<div class="twos-line flex col">
+						<div class="item-line-one flex fl-align fl-jsb">
+							<span class="fz-7 c-00" style="margin-left: 0.04rem;">税收</span>
+							<van-switch v-model="checked" style="margin-right: 0.04rem;" />
+						</div>
+						<div class="item-line-two flex fl-align fl-jsb">
+							<span class="c-00 fz-7">税率设置</span>
+							<div class="flex fz-7">
+								<span>0%</span>
+								<i class="go-icon"></i>
+							</div>
+						</div>
+					</div>
+					<div class="twos-line flex col">
+						<div class="item-line-one flex fl-align fl-jsb">
+							<span class="fz-7 c-00" style="margin-left: 0.04rem;">库存</span>
+							<van-switch v-model="checked" style="margin-right: 0.04rem;" />
+						</div>
+						<div class="item-line-one flex fl-align fl-jsb">
+							<span class="fz-7 c-00" style="margin-left: 0.04rem;">库存未负可售</span>
+							<van-switch v-model="checked" style="margin-right: 0.04rem;" />
+						</div>
+					</div>
+					<div class="g-list-item flex fl-align fl-jsb">
+						<div class="left flex col fz-7">
+							<span class="c-00">成本</span>
+							<span>开启后，添加商品时需要输入成本价，销售统计会统计利润</span>
+						</div>
+						<van-switch v-model="checked" style="margin-right: 0.04rem;" />
+					</div>
+					<div class="g-list-item flex fl-align fl-jsb">
+						<div class="left flex col fz-7">
+							<span class="c-00">条码商品</span>
+							<span>开启后，可添加含有条码的商品</span>
+						</div>
+						<van-switch v-model="checked" style="margin-right: 0.04rem;" />
+					</div>
+					<div class="twos-line flex col">
+						<div class="item-line-two flex fl-align fl-jsb">
+							<div class="flex col fz-7" style="width: 84%;">
+								<span class="c-00">通讯称</span>
+								<span>开启后，可添加散装称重商品，收银时通讯称直接把重量传输到收银系统。</span>
+							</div>
+							<van-switch v-model="checked" />
+						</div>
+						<div class="item-line-two flex fl-align fl-jsb">
+							<div class="flex col fz-7">
+								<span class="c-00">称重标签小票模板</span>
+							</div>
+							<div class="flex fz-7">
+								<span>手动输入</span>
+								<i class="go-icon"></i>
+							</div>
+						</div>
+					</div>
+					<div class="item-line-two flex fl-align fl-jsb">
+						<div class="flex col fz-7" style="margin-left: 0.04rem;">
+							<span class="c-00">商品排序</span>
+						</div>
+						<div class="flex fz-7" style="margin-right: 0.04rem;">
+							<span>商品新增顺序</span>
+							<i class="go-icon"></i>
+						</div>
+					</div>
+					<div class="item-line-two flex fl-align fl-jsb">
+						<div class="flex col fz-7" style="margin-left: 0.04rem;">
+							<span class="c-00">商品图片展示</span>
+						</div>
+						<van-switch v-model="checked" style="margin-right: 0.04rem;" />
+					</div>
+					<div class="g-list-item flex fl-align fl-jsb">
+						<div class="left flex col fz-7">
+							<span class="c-00">计次卡</span>
+							<span>开启后，可使用计次卡功能</span>
+						</div>
+						<van-switch v-model="checked" style="margin-right: 0.04rem;" />
+					</div>
+					<div class="g-list-item flex fl-align fl-jsb">
+						<div class="left flex col fz-7">
+							<span class="c-00">销售提成</span>
+							<span>开启后，可关联销售员进行提成</span>
+						</div>
+						<van-switch v-model="checked" style="margin-right: 0.04rem;" />
+					</div>
+					<div class="item-line-two flex fl-align fl-jsb">
+						<div class="flex col fz-7" style="margin-left: 0.04rem;">
+							<span class="c-00">自带打印机字体</span>
+						</div>
+						<div class="flex fz-7" style="margin-right: 0.04rem;">
+							<span>常规字体</span>
+							<i class="go-icon"></i>
+						</div>
+					</div>
+
+					<div class="item-line-two flex fl-align fl-jsb">
+						<div class="flex col fz-7" style="margin-left: 0.04rem;">
+							<span class="c-00">结账小票打印数量</span>
+						</div>
+						<div class="flex fz-7" style="margin-right: 0.04rem;">
+							<span>14</span>
+							<i class="go-icon"></i>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
