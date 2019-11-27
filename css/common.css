@@ -78,6 +78,11 @@ input {
     -webkit-justify-content: space-evenly;
 }
 
+.fl-jsd{
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+}
+
 /* 文字大小 */
 
 .fz-5{
@@ -115,4 +120,8 @@ input {
 /* 背景颜色 */
 .b-ff{
     background: #fff;
+}
+
+.b-C0{
+    background: #C0C0C0;
 }
