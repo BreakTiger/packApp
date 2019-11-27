@@ -1,249 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>设置</title>
-		<script src="js/flexible.min.js"></script>
-		<link rel="stylesheet" href="css/common.css">
-		<script src="js/jquery-3.0.0.min.js"></script>
-		<script src="js/vue.js"></script>
-		<!-- 引入 Vue 和 Vant 的 JS 文件 -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
-		<style>
-			#setting {
-				width: 100%;
-				min-height: 100vh;
-			}
-			
-			.left-nav {
-				width: 30%;
-				height: 100vh;
-			}
-			
-			.right-tab {
-				width: 70%;
-				height: 100vh;
-				overflow: auto;
-			}
-			
-			.nav-top {
-				width: 100%;
-				height: 0.2rem;
-				background: #0099FF;
-			}
-			
-			.back {
-				display: block;
-				width: 0.1rem;
-				height: 0.2rem;
-				background: url(img/back.png) no-repeat center;
-				background-size: 100%;
-				margin-left: 0.04rem;
-				margin-right: 0.35rem;
-			}
-			
-			.list-content {
-				width: 100%;
-				height: 100%;
-				overflow-y: scroll;
-				background: grey;
-			}
-			
-			.list-item {
-				width: 100%;
-				padding: 0.03rem 0;
-				border: none;
-			}
-			
-			.list-item:nth-child(3),
-			.list-item:nth-child(8) {
-				margin-bottom: 0.05rem;
-			}
-			
-			.icons {
-				width: 0.12rem;
-				height: 0.12rem;
-				margin-left: 0.05rem;
-				margin-right: 0.08rem;
-			}
-			
-			.active {
-				background: #C0C0C0;
-			}
-			/* tab */
-			
-			#takeout {
-				width: 100%;
-				height: 100%;
-			}
-			
-			.tab-top {
-				width: 100%;
-				height: 0.2rem;
-				background: #0099FF;
-				text-align: center;
-				line-height: 0.2rem;
-			}
-			
-			.open-line {
-				width: 92%;
-				padding: 0.05rem 0;
-				margin-top: 0.05rem;
-				background: #C0C0C0;
-				margin-left: 0.1rem;
-			}
-			
-			.open-line>span {
-				margin-left: 0.05rem;
-			}
-			
-			.open-line>div {
-				margin-right: 0.05rem;
-			}
-		</style>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>设置</title>
+	<script src="js/flexible.min.js"></script>
+	<link rel="stylesheet" href="css/common.css">
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<script src="js/vue.js"></script>
+	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
+	<style>
+		#setting {
+			width: 100%;
+			min-height: 100vh;
+		}
 
-	<body>
-		<div id="setting" class="flex fl-align" v-cloak>
-			<!-- 左边导航 -->
-			<div class="left-nav flex col fl-align">
-				<div class="nav-top flex fl-align">
-					<i class="back"></i>
-					<span class="fz-10 c-ff">设置</span>
-				</div>
-				<div class="list-content">
-					<div class="list-item flex fl-align b-ff" v-for="item in list" @click="choice(item)" :class="choices==item.id?'active':''">
-						<img :src="item.icon" class="icons">
-						<span class="fz-10 c-00">{{item.name}}</span>
-					</div>
+		.left-nav {
+			width: 30%;
+			height: 100vh;
+		}
+
+		.right-tab {
+			width: 70%;
+			height: 100vh;
+			overflow: auto;
+		}
+
+		.nav-top {
+			width: 100%;
+			height: 0.2rem;
+			background: #0099FF;
+		}
+
+		.back {
+			display: block;
+			width: 0.1rem;
+			height: 0.2rem;
+			background: url(img/back.png) no-repeat center;
+			background-size: 100%;
+			margin-left: 0.04rem;
+			margin-right: 0.35rem;
+		}
+
+		.list-content {
+			width: 100%;
+			height: 100%;
+			overflow-y: scroll;
+			background: grey;
+		}
+
+		.list-item {
+			width: 100%;
+			padding: 0.03rem 0;
+			border: none;
+		}
+
+		.list-item:nth-child(3),
+		.list-item:nth-child(8) {
+			margin-bottom: 0.05rem;
+		}
+
+		.icons {
+			width: 0.12rem;
+			height: 0.12rem;
+			margin-left: 0.05rem;
+			margin-right: 0.08rem;
+		}
+
+		.active {
+			background: #C0C0C0;
+		}
+
+		/* tab */
+	</style>
+</head>
+
+<body>
+	<div id="setting" class="flex fl-align" v-cloak>
+		<!-- 左边导航 -->
+		<div class="left-nav flex col fl-align">
+			<div class="nav-top flex fl-align">
+				<i class="back"></i>
+				<span class="fz-10 c-ff">设置</span>
+			</div>
+			<div class="list-content">
+				<div class="list-item flex fl-align b-ff" v-for="item in list" @click="choice(item)"
+					:class="choices==item.id?'active':''">
+					<img :src="item.icon" class="icons">
+					<span class="fz-10 c-00">{{item.name}}</span>
 				</div>
 			</div>
-			<!-- 右边tab内容 -->
-			<div class="right-tab">
-				<div id="takeout" class="flex col">
-					<div class="tab-top fz-10 c-ff">外卖</div>
-					<div class="open-line flex fl-align fl-jsb">
-						<span class="c-00 fz-7">外卖</span>
-						<van-switch v-model="checked" />
-					</div>
-					<span class="fz-7 c-00" style="margin-left: 0.1rem;margin-top: 0.06rem;margin-bottom: 0.02rem;">外卖平台设置</span>
-					<div class="line-two fz-7">
-						<div>
-							<span class="c-00">绑定美团外卖账号</span>
-							<p class="fz-7"></p>
-						</div>
-						<i></i>
-					</div>
-					<div class="line-two fz-7">
-						<div>
-							<span class="c-00">绑定饿了么账号</span>
-							<p class="fz-7"></p>
-						</div>
-						<i></i>
-					</div>
-					<span class="fz-7 c-00" style="margin-left: 0.1rem;margin-top: 0.06rem;margin-bottom: 0.02rem;">通用设置</span>
-				</div>
-			</div>
-			<!-- 遮罩 -->
 		</div>
-	</body>
-	<script>
-		new Vue({
-			el: '#setting',
-			data: {
-				checked: true,
-				list: [{
-						id: 0,
-						icon: 'img/jiao.png',
-						name: '交班',
-						path: ''
-					},
-					{
-						id: 1,
-						icon: 'img/shop.png',
-						name: '店铺信息',
-						path: ''
-					}, {
-						id: 2,
-						icon: 'img/manage.png',
-						name: '员工管理',
-						path: ''
-					},
-					{
-						id: 3,
-						icon: 'img/gathering.png',
-						name: '收款方式',
-						path: ''
-					}, {
-						id: 4,
-						icon: 'img/takeout.png',
-						name: '外卖',
-						path: ''
-					}, {
-						id: 5,
-						icon: 'img/scan.png',
-						name: '扫码点餐',
-						path: ''
-					}, {
-						id: 6,
-						icon: 'img/fu.png',
-						name: '副屏广告',
-						path: ''
-					}, {
-						id: 7,
-						icon: 'img/print.png',
-						name: '打印机',
-						path: ''
-					},
-					{
-						id: 8,
-						icon: 'img/general.png',
-						name: '通用',
-						path: ''
-					},
-					{
-						id: 9,
-						icon: 'img/update.png',
-						name: '更新数据',
-						path: ''
-					}, {
-						id: 10,
-						icon: 'img/about.png',
-						name: '关于',
-						path: ''
-					}
-				],
-				choices: 0,
-				paylist: [{
-						name: '支付宝支付(2笔)',
-						money: '0.00'
-					},
-					{
-						name: '微信支付',
-						money: '0.00'
-					}
-				]
-			},
-			methods: {
-				choice: function(e) {
-					var that = this
-					var c = that.choices
-					var id = e.id
-					if(c != id) {
-						that.choices = id
-					}
-				}
+		<!-- 右边tab内容 -->
+		<div class="right-tab">
+			
 
+		</div>
+		<!-- 遮罩 -->
+	</div>
+</body>
+<script>
+	new Vue({
+		el: '#setting',
+		data: {
+			checked: true,
+			list: [{
+				id: 0,
+				icon: 'img/jiao.png',
+				name: '交班',
+				path: ''
 			},
-			created: function() {
-				//				$('.right-tab').load('../tabs/jiao.html')
+			{
+				id: 1,
+				icon: 'img/shop.png',
+				name: '店铺信息',
+				path: ''
+			}, {
+				id: 2,
+				icon: 'img/manage.png',
+				name: '员工管理',
+				path: ''
+			},
+			{
+				id: 3,
+				icon: 'img/gathering.png',
+				name: '收款方式',
+				path: ''
+			}, {
+				id: 4,
+				icon: 'img/takeout.png',
+				name: '外卖',
+				path: ''
+			}, {
+				id: 5,
+				icon: 'img/scan.png',
+				name: '扫码点餐',
+				path: ''
+			}, {
+				id: 6,
+				icon: 'img/fu.png',
+				name: '副屏广告',
+				path: ''
+			}, {
+				id: 7,
+				icon: 'img/print.png',
+				name: '打印机',
+				path: ''
+			},
+			{
+				id: 8,
+				icon: 'img/general.png',
+				name: '通用',
+				path: ''
+			},
+			{
+				id: 9,
+				icon: 'img/update.png',
+				name: '更新数据',
+				path: ''
+			}, {
+				id: 10,
+				icon: 'img/about.png',
+				name: '关于',
+				path: ''
 			}
-		})
-	</script>
+			],
+			choices: 0,
+			paylist: [{
+				name: '支付宝支付(2笔)',
+				money: '0.00'
+			},
+			{
+				name: '微信支付',
+				money: '0.00'
+			}
+			]
+		},
+		methods: {
+			choice: function (e) {
+				var that = this
+				var c = that.choices
+				var id = e.id
+				if (c != id) {
+					that.choices = id
+				}
+			}
+
+		},
+		created: function () {
+			//				$('.right-tab').load('../tabs/jiao.html')
+		}
+	})
+</script>
 
 </html>
