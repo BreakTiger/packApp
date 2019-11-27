@@ -116,6 +116,9 @@ input {
 }
 
 /* 文字粗细 */
+.f-wb{
+    font-weight: bold;
+}
 
 /* 背景颜色 */
 .b-ff{
