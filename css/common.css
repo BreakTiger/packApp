@@ -83,11 +83,11 @@ input {
     -webkit-justify-content: flex-end;
 }
 
-/* 文字大小 */
-
+/* 文字大小 */ 
 .fz-5{
     font-size: 0.05rem;
 }
+
 .fz-7{
     font-size: 0.07rem;
 }
@@ -127,8 +127,26 @@ input {
     background: #C0C0C0;
 }
 
+.b-9F{
+    background: #0099FF;
+}
+.b-DD{
+    background: #DDDDDD;
+}
+
 
 /* 表格 */
 table {
     border-collapse: collapse;
+}
+
+.van-stepper__minus::after,
+.van-stepper__minus::before,
+.van-stepper__plus::after,
+.van-stepper__plus::before{
+    background-color: #0066CC !important;
+}
+
+.van-stepper__input{
+    color: #0066CC !important;
 }
