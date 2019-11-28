@@ -32,6 +32,25 @@
             margin-left: 0.04rem;
         }
 
+        .p_add {
+            display: inline-block;
+            width: 0.1rem;
+            height: 0.1rem;
+            background: url(../img/p_add.png) no-repeat center;
+            background-size: 100%;
+            vertical-align: middle;
+        }
+
+        .set {
+            display: inline-block;
+            width: 0.1rem;
+            height: 0.1rem;
+            background: url(../img/set.png) no-repeat center;
+            background-size: 100%;
+            vertical-align: middle;
+        }
+
+
         .sreach {
             display: inline-block;
             width: 0.1rem;
@@ -39,13 +58,30 @@
             background: url(../img/sreach.png) no-repeat center;
             background-size: 100%;
             vertical-align: middle;
-            margin-right: 0.08rem;
         }
 
         .wait,
         .screen {
             padding: 0.02rem 0.04rem;
             border-radius: 0.02rem;
+        }
+
+        .a_up {
+            display: inline-block;
+            width: 0.1rem;
+            height: 0.1rem;
+            background: url(../img/a_up.png) no-repeat center;
+            background-size: 100%;
+            margin-left: 0.01rem;
+        }
+
+        .a_dn {
+            display: inline-block;
+            width: 0.1rem;
+            height: 0.1rem;
+            background: url(../img/a_dn.png) no-repeat center;
+            background-size: 100%;
+            margin-left: 0.01rem;
         }
 
         .content {
@@ -91,10 +127,15 @@
 
         .list-content {
             width: 98.5%;
-            height: 98%;
+            height: 90%;
             margin-top: 2%;
             border-radius: 0.02rem 0.02rem 0 0;
             overflow-y: scroll;
+        }
+
+        .summ-line {
+            width: 98.5%;
+            height: 8%;
         }
 
         thead tr th,
@@ -114,40 +155,24 @@
             background: url(../img/go.png) no-repeat center;
             background-size: 100%;
         }
-
-        .num {
-            position: absolute;
-            left: 0.55rem;
-            background: red;
-            width: 0.08rem;
-            height: 0.08rem;
-            line-height: 0.08rem;
-            text-align: center;
-            border-radius: 50%;
-        }
     </style>
 </head>
 
 <body>
     <div id="members">
         <div class="nav-top">
-
-            <div class="flex fl-align fl-jsb fz-10" style="width: 100%;height: 100%;">
+            <div class="flex fl-align fl-jsb fz-10" style="width: 100%;height: 100%;" v-if="sreach">
                 <i class="back" @click="back"></i>
                 <span class="c-ff" style="margin-left: 0.6rem;">会员</span>
-                <div style="margin-right: 0.04rem;position: relative;" class="c-6C">
-                    <span class="fz-7 b-ff">积分兑换</span>
-                    <i class=""></i>
-                    <i class=""></i>
-                    <i class="sreach"></i>
-                    <!-- 
-                    <span class="fz-7 wait b-ff" @click="waits">待支付订单</span>
-                    <span class="fz-5 c-ff num">1</span>
-                    <span class="fz-7 screen b-ff">筛选</span> -->
+                <div style="margin-right: 0.04rem;width: 24%;" class="c-6C flex fl-jsb fl-align">
+                    <span class="fz-7 b-ff"
+                        style="text-align: center;width: 0.32rem;height: 0.15rem;line-height: 0.15rem;border-radius: 0.02rem;">积分兑换</span>
+                    <i class="p_add"></i>
+                    <i class="set"></i>
+                    <i class="sreach" @click="tosreach"></i>
                 </div>
             </div>
-
-            <!-- <div class="flex fl-align fl-jsb fz-10" style="width: 100%;height: 100%;" v-if="!sreach">
+            <div class="flex fl-align fl-jsb fz-10" style="width: 100%;height: 100%;" v-if="!sreach">
                 <i class="back" @click="toback"></i>
                 <div class="sreach-lines flex fl-align">
                     <i class="sreach-icon"></i>
@@ -156,46 +181,67 @@
                 </div>
                 <span class="c-6C b-ff fz-7"
                     style="margin-right: 0.04rem;height: 0.12rem;line-height: 0.12rem;padding: 0 0.02rem;border-radius: 0.02rem;">搜索</span>
-            </div> -->
-
+            </div>
         </div>
+
         <div class="content flex col fl-align">
             <div class="list-content b-ff">
                 <table style="width: 100%;margin:0px">
                     <thead class="fz-7" style="border-bottom: 0.001rem solid #999999;">
                         <tr>
-                            <!-- <th style="width: 12%;">时间|单号</th>
-                            <th>牌号</th>
-                            <th>消费金额</th>
-                            <th>折扣</th>
-                            <th>退款</th>
-                            <th>实收</th>
-                            <th>支付方式</th>
-                            <th>收银员</th>
-                            <th style="width: 24%;text-align: left;">操作</th> -->
+                            <th>姓名|电话</th>
+                            <th>会员等级</th>
+                            <th class="flex col fl-align">
+                                <div class="flex fl-align">
+                                    <span>卡号|</span>
+                                    <div class="c-6C flex fl-align" @click="tosort">
+                                        <span>注册时间</span>
+                                        <i class="a_up" v-if="sort==2"></i>
+                                        <i class="a_dn" v-if="sort==1"></i>
+                                    </div>
+                                </div>
+                            </th>
+                            <th class="c-6C">
+                                <div class="c-6C flex fl-align" @click="tosort">
+                                    <span>余额</span>
+                                    <i class="a_up" v-if="sort==2"></i>
+                                    <i class="a_dn" v-if="sort==1"></i>
+                                </div>
+                            </th>
+                            <th class="c-6C">
+                                <div class="c-6C flex fl-align" @click="tosort">
+                                    <span>积分</span>
+                                    <i class="a_up" v-if="sort==2"></i>
+                                    <i class="a_dn" v-if="sort==1"></i>
+                                </div>
+                            </th>
+                            <th>成长值</th>
+                            <th style="width: 40%;">操作</th>
                         </tr>
                     </thead>
                     <tbody class="fz-5 c-33">
-                        <!-- <tr>
+                        <tr>
                             <td>
                                 <div class="flex col fl-align">
-                                    <span style="margin-bottom: 0.01rem;">11-26 19;44:47</span>
-                                    <span>12315468435212</span>
+                                    <span>111</span>
+                                    <span>13868375888</span>
                                 </div>
                             </td>
-                            <td>1号牌子</td>
-                            <td>28.00</td>
-                            <td>15.40</td>
-                            <td>0.00</td>
-                            <td>12.60</td>
-                            <td>支付宝</td>
-                            <td>店铺创建者</td>
-                            <td style="text-align: left;">
-                                <div class="c-6C flex fl-align fl-jsb">
-                                    <span>打印</span>
-                                    <span>撤销结账</span>
-                                    <span>退货</span>
-                                    <span>换货</span>
+                            <td>普通会员</td>
+                            <td>
+                                <div class="flex col fl-align">
+                                    <span>4355</span>
+                                    <span style="color: #999999;">2019-11-22 18：20</span>
+                                </div>
+                            </td>
+                            <td>19000</td>
+                            <td>1000</td>
+                            <td>0</td>
+                            <td>
+                                <div class="c-6C flex fl-align fl-jsa">
+                                    <span>充值</span>
+                                    <span>还原</span>
+                                    <span>售卡</span>
                                     <i class="go-icon"></i>
                                 </div>
                             </td>
@@ -203,68 +249,68 @@
                         <tr>
                             <td>
                                 <div class="flex col fl-align">
-                                    <span style="margin-bottom: 0.01rem;">11-26 19;44:47</span>
-                                    <span>12315468435212</span>
+                                    <span>111</span>
+                                    <span>13868375888</span>
                                 </div>
                             </td>
-                            <td>1号牌子</td>
-                            <td>28.00</td>
-                            <td>15.40</td>
-                            <td>0.00</td>
-                            <td>12.60</td>
-                            <td>支付宝</td>
-                            <td>店铺创建者</td>
-                            <td style="text-align: left;">
-                                <div class="c-6C flex fl-align fl-jsb">
-                                    <span>打印</span>
-                                    <span>撤销结账</span>
-                                    <span>退货</span>
-                                    <span>换货</span>
+                            <td>普通会员</td>
+                            <td>
+                                <div class="flex col fl-align">
+                                    <span>4355</span>
+                                    <span style="color: #999999;">2019-11-22 18：20</span>
+                                </div>
+                            </td>
+                            <td>19000</td>
+                            <td>1000</td>
+                            <td>0</td>
+                            <td>
+                                <div class="c-6C flex fl-align fl-jsa">
+                                    <span>充值</span>
+                                    <span>还原</span>
+                                    <span>售卡</span>
                                     <i class="go-icon"></i>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <div class="flex col fl-align">
-                                    <span style="margin-bottom: 0.01rem;">11-26 19;44:47</span>
-                                    <span>12315468435212</span>
-                                </div>
-                            </td>
-                            <td>1号牌子</td>
-                            <td>28.00</td>
-                            <td>15.40</td>
-                            <td>0.00</td>
-                            <td>12.60</td>
-                            <td>支付宝</td>
-                            <td>店铺创建者</td>
-                            <td style="text-align: left;">
-                                <div class="c-6C flex fl-align fl-jsb">
-                                    <span>打印</span>
-                                    <span>撤销结账</span>
-                                    <span>退货</span>
-                                    <span>换货</span>
-                                    <i class="go-icon"></i>
-                                </div>
-                                <div class="c-6C flex fl-align fl-jsb">
-                                    <span>删除成功</span>
-                                </div>
-                            </td>
-                        </tr> -->
                     </tbody>
                 </table>
             </div>
-
+            <div class="summ-line flex fl-align fz-7 c-33 b-ff">
+                &nbsp;&nbsp;会员余额：19000，会员数：1（普通会员1，其他：0）
+            </div>
         </div>
     </div>
 </body>
 <script>
     new Vue({
         el: "#members",
-        data: {},
+        data: {
+            sreach: true,
+            initial: '',
+            sort: 1
+        },
         methods: {
-            back:function(){
+            back: function () {
                 window.history.back()
+            },
+            tosreach: function () {
+                this.sreach = false
+            },
+            toback: function () {
+                this.sreach = true
+            },
+            clear: function () {
+                this.initial = ''
+            },
+            tosort: function () {
+                // var that = this
+                // status = that.sort
+                // console.log(status)
+                // if (status == 1) {
+                //     that.sort = 2
+                // } else if (status == 2) {
+                //     that.sort == 1
+                // }
             }
         },
         created: function () {
