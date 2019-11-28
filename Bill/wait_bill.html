@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,19 +11,133 @@
     <script src="../js/jquery-3.0.0.min.js"></script>
     <script src="../js/vue.js"></script>
     <style>
+        #waits {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .nav-top {
+            width: 100%;
+            height: 8.6957vh;
+            background: #0099FF;
+            line-height: 0.2rem;
+        }
+
+        .back {
+            display: block;
+            width: 0.1rem;
+            height: 0.2rem;
+            background: url(../img/back.png) no-repeat center;
+            background-size: 100%;
+            margin-left: 0.04rem;
+        }
+
+        .content {
+            width: 100%;
+            height: calc(100vh - 8.6957vh);
+            overflow-y: scroll;
+        }
+
+        .list-content {
+            width: 98.5%;
+            height: 98%;
+            margin-top: 2%;
+            border-radius: 0.02rem 0.02rem 0 0;
+            overflow-y: scroll;
+        }
+
+        thead tr th,
+        tbody tr td {
+            padding: 0.03rem 0;
+            text-align: center;
+        }
+
+        tbody tr:nth-child(odd) {
+            background: #C0C0C0;
+        }
     </style>
 </head>
+
 <body>
     <div id="waits">
-
+        <div class="nav-top">
+            <div class="flex fl-align fz-10" style="width: 100%;height: 100%;">
+                <i class="back" @click="toback"></i>
+                <span class="c-ff" style="margin-left: 1.6rem;">待支付订单</span>
+            </div>
+        </div>
+        <div class="content flex col fl-align">
+            <div class="list-content b-ff">
+                <table style="width: 100%;margin:0px">
+                    <thead class="fz-7" style="border-bottom: 0.001rem solid #999999;">
+                        <tr>
+                            <th>时间</th>
+                            <th>订单号</th>
+                            <th>订单金额</th>
+                            <th>收银员</th>
+                            <th style="width: 40%;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="fz-5 c-33">
+                        <tr>
+                            <td>11-26 14:58:40</td>
+                            <td>123456789789456123</td>
+                            <td>9.00</td>
+                            <td>店铺创建者</td>
+                            <td>
+                                <div class="c-6C flex fl-align fl-jsa">
+                                    <span>验证支付结果</span>
+                                    <span>付款码结账</span>
+                                    <span>删除</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11-26 14:58:40</td>
+                            <td>123456789789456123</td>
+                            <td>9.00</td>
+                            <td>店铺创建者</td>
+                            <td>
+                                <div class="c-6C flex fl-align fl-jsa">
+                                    <span>验证支付结果</span>
+                                    <span>付款码结账</span>
+                                    <span>删除</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11-26 14:58:40</td>
+                            <td>123456789789456123</td>
+                            <td>9.00</td>
+                            <td>店铺创建者</td>
+                            <td>
+                                <div class="c-6C flex fl-align fl-jsa">
+                                    <span>验证支付结果</span>
+                                    <span>付款码结账</span>
+                                    <span>删除</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 <script>
-new Vue({
-    el:"#waits",
-    data:{},
-    methods:{},
-    created:function(){}
-})
+    new Vue({
+        el: "#waits",
+        data: {
+        },
+        methods: {
+            toback: function () {
+                window.history.back()
+            }
+        },
+        created: function () {
+
+        }
+    })
 </script>
+
 </html>

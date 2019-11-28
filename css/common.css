@@ -96,8 +96,6 @@ input {
     font-size: 0.1rem;
 }
 
-
-
 /* 文字颜色 */
 .c-ff{
     color: #fff;
@@ -127,4 +125,10 @@ input {
 
 .b-C0{
     background: #C0C0C0;
+}
+
+
+/* 表格 */
+table {
+    border-collapse: collapse;
 }

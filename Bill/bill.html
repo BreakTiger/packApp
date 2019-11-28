@@ -97,11 +97,6 @@
             overflow-y: scroll;
         }
 
-        table {
-            border-collapse: collapse;
-
-        }
-
         thead tr th,
         tbody tr td {
             padding: 0.03rem 0;
@@ -119,6 +114,17 @@
             background: url(../img/go.png) no-repeat center;
             background-size: 100%;
         }
+
+        .num {
+            position: absolute;
+            left: 0.55rem;
+            background: red;
+            width: 0.08rem;
+            height: 0.08rem;
+            line-height: 0.08rem;
+            text-align: center;
+            border-radius: 50%;
+        }
     </style>
 </head>
 
@@ -128,9 +134,10 @@
             <div class="flex fl-align fl-jsb fz-10" style="width: 100%;height: 100%;" v-if="sreach">
                 <i class="back"></i>
                 <span class="c-ff" style="margin-left: 0.6rem;">账单</span>
-                <div style="margin-right: 0.04rem;" class="c-6C">
+                <div style="margin-right: 0.04rem;position: relative;" class="c-6C">
                     <i class="sreach" @click="tosreach"></i>
-                    <span class="fz-7 wait b-ff">待支付订单</span>
+                    <span class="fz-7 wait b-ff" @click="waits">待支付订单</span>
+                    <span class="fz-5 c-ff num">1</span>
                     <span class="fz-7 screen b-ff">筛选</span>
                 </div>
             </div>
@@ -257,6 +264,9 @@
             },
             toback: function () {
                 this.sreach = true
+            },
+            waits: function () {
+                window.location.href = "wait_bill.html"
             }
         },
         created: function () {
