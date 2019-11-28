@@ -6,24 +6,267 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>会员</title>
-    <script src="js/flexible.min.js"></script>
-    <link rel="stylesheet" href="css/common.css">
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <script src="js/vue.js"></script>
+    <script src="../js/flexible.min.js"></script>
+    <link rel="stylesheet" href="../css/common.css">
+    <script src="../js/jquery-3.0.0.min.js"></script>
+    <script src="../js/vue.js"></script>
     <style>
+        #members {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .nav-top {
+            width: 100%;
+            height: 8.6957vh;
+            background: #0099FF;
+            line-height: 0.2rem;
+        }
+
+        .back {
+            display: block;
+            width: 0.1rem;
+            height: 0.2rem;
+            background: url(../img/back.png) no-repeat center;
+            background-size: 100%;
+            margin-left: 0.04rem;
+        }
+
+        .sreach {
+            display: inline-block;
+            width: 0.1rem;
+            height: 0.1rem;
+            background: url(../img/sreach.png) no-repeat center;
+            background-size: 100%;
+            vertical-align: middle;
+            margin-right: 0.08rem;
+        }
+
+        .wait,
+        .screen {
+            padding: 0.02rem 0.04rem;
+            border-radius: 0.02rem;
+        }
+
+        .content {
+            width: 100%;
+            height: calc(100vh - 8.6957vh);
+            overflow-y: scroll;
+        }
+
+        .sreach-lines {
+            width: 85%;
+            height: 68%;
+            border: 0.01rem solid #fff;
+            border-radius: 0.02rem;
+        }
+
+        .sreach-icon {
+            display: inline-block;
+            width: 0.1rem;
+            height: 0.1rem;
+            background: url(../img/sreach.png) no-repeat center;
+            background-size: 100%;
+            margin: 0 0.02rem;
+        }
+
+        .s-input {
+            width: 90%;
+            height: 100%;
+            background-color: transparent;
+        }
+
+        .s-input::placeholder {
+            color: #fff;
+        }
+
+        .close {
+            display: inline-block;
+            width: 0.1rem;
+            height: 0.1rem;
+            background: url(../img/close.png) no-repeat center;
+            background-size: 100%;
+            margin-left: 0.05rem;
+        }
+
+        .list-content {
+            width: 98.5%;
+            height: 98%;
+            margin-top: 2%;
+            border-radius: 0.02rem 0.02rem 0 0;
+            overflow-y: scroll;
+        }
+
+        thead tr th,
+        tbody tr td {
+            padding: 0.03rem 0;
+            text-align: center;
+        }
+
+        tbody tr:nth-child(odd) {
+            background: #C0C0C0;
+        }
+
+        .go-icon {
+            display: inline-block;
+            width: 0.08rem;
+            height: 0.08rem;
+            background: url(../img/go.png) no-repeat center;
+            background-size: 100%;
+        }
+
+        .num {
+            position: absolute;
+            left: 0.55rem;
+            background: red;
+            width: 0.08rem;
+            height: 0.08rem;
+            line-height: 0.08rem;
+            text-align: center;
+            border-radius: 50%;
+        }
     </style>
 </head>
 
 <body>
-    <div id="bill">
+    <div id="members">
+        <div class="nav-top">
 
+            <div class="flex fl-align fl-jsb fz-10" style="width: 100%;height: 100%;">
+                <i class="back" @click="back"></i>
+                <span class="c-ff" style="margin-left: 0.6rem;">会员</span>
+                <div style="margin-right: 0.04rem;position: relative;" class="c-6C">
+                    <span class="fz-7 b-ff">积分兑换</span>
+                    <i class=""></i>
+                    <i class=""></i>
+                    <i class="sreach"></i>
+                    <!-- 
+                    <span class="fz-7 wait b-ff" @click="waits">待支付订单</span>
+                    <span class="fz-5 c-ff num">1</span>
+                    <span class="fz-7 screen b-ff">筛选</span> -->
+                </div>
+            </div>
+
+            <!-- <div class="flex fl-align fl-jsb fz-10" style="width: 100%;height: 100%;" v-if="!sreach">
+                <i class="back" @click="toback"></i>
+                <div class="sreach-lines flex fl-align">
+                    <i class="sreach-icon"></i>
+                    <input type="text" class="s-input c-ff fz-7" v-model="initial" placeholder="输入商品名称，订单号后6位搜索订单">
+                    <i class="close" v-if="initial" @click="clear"></i>
+                </div>
+                <span class="c-6C b-ff fz-7"
+                    style="margin-right: 0.04rem;height: 0.12rem;line-height: 0.12rem;padding: 0 0.02rem;border-radius: 0.02rem;">搜索</span>
+            </div> -->
+
+        </div>
+        <div class="content flex col fl-align">
+            <div class="list-content b-ff">
+                <table style="width: 100%;margin:0px">
+                    <thead class="fz-7" style="border-bottom: 0.001rem solid #999999;">
+                        <tr>
+                            <!-- <th style="width: 12%;">时间|单号</th>
+                            <th>牌号</th>
+                            <th>消费金额</th>
+                            <th>折扣</th>
+                            <th>退款</th>
+                            <th>实收</th>
+                            <th>支付方式</th>
+                            <th>收银员</th>
+                            <th style="width: 24%;text-align: left;">操作</th> -->
+                        </tr>
+                    </thead>
+                    <tbody class="fz-5 c-33">
+                        <!-- <tr>
+                            <td>
+                                <div class="flex col fl-align">
+                                    <span style="margin-bottom: 0.01rem;">11-26 19;44:47</span>
+                                    <span>12315468435212</span>
+                                </div>
+                            </td>
+                            <td>1号牌子</td>
+                            <td>28.00</td>
+                            <td>15.40</td>
+                            <td>0.00</td>
+                            <td>12.60</td>
+                            <td>支付宝</td>
+                            <td>店铺创建者</td>
+                            <td style="text-align: left;">
+                                <div class="c-6C flex fl-align fl-jsb">
+                                    <span>打印</span>
+                                    <span>撤销结账</span>
+                                    <span>退货</span>
+                                    <span>换货</span>
+                                    <i class="go-icon"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="flex col fl-align">
+                                    <span style="margin-bottom: 0.01rem;">11-26 19;44:47</span>
+                                    <span>12315468435212</span>
+                                </div>
+                            </td>
+                            <td>1号牌子</td>
+                            <td>28.00</td>
+                            <td>15.40</td>
+                            <td>0.00</td>
+                            <td>12.60</td>
+                            <td>支付宝</td>
+                            <td>店铺创建者</td>
+                            <td style="text-align: left;">
+                                <div class="c-6C flex fl-align fl-jsb">
+                                    <span>打印</span>
+                                    <span>撤销结账</span>
+                                    <span>退货</span>
+                                    <span>换货</span>
+                                    <i class="go-icon"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="flex col fl-align">
+                                    <span style="margin-bottom: 0.01rem;">11-26 19;44:47</span>
+                                    <span>12315468435212</span>
+                                </div>
+                            </td>
+                            <td>1号牌子</td>
+                            <td>28.00</td>
+                            <td>15.40</td>
+                            <td>0.00</td>
+                            <td>12.60</td>
+                            <td>支付宝</td>
+                            <td>店铺创建者</td>
+                            <td style="text-align: left;">
+                                <div class="c-6C flex fl-align fl-jsb">
+                                    <span>打印</span>
+                                    <span>撤销结账</span>
+                                    <span>退货</span>
+                                    <span>换货</span>
+                                    <i class="go-icon"></i>
+                                </div>
+                                <div class="c-6C flex fl-align fl-jsb">
+                                    <span>删除成功</span>
+                                </div>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
 </body>
 <script>
     new Vue({
-        el: "#bill",
+        el: "#members",
         data: {},
-        methods: {},
+        methods: {
+            back:function(){
+                window.history.back()
+            }
+        },
         created: function () {
 
         }
