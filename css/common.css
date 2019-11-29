@@ -113,6 +113,10 @@ input {
     color: #0066CC;
 }
 
+.c-60{
+    color: #FF6600;
+}
+
 /* 文字粗细 */
 .f-wb{
     font-weight: bold;
@@ -149,4 +153,47 @@ table {
 
 .van-stepper__input{
     color: #0066CC !important;
+}
+
+.clamp1 {
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+
+.clamp2 {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+}
+
+
+.covers {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0rem;
+    z-index: 200;
+}
+
+
+/* 选择白三角 */
+.linetriangle{
+    position: relative;
+}
+
+.linetriangle::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.05rem;
+    border: 0.11rem solid transparent;
+    border-bottom-color: #fff;
+}
+
+.linetriangle div,.linetriangle span, .linetriangle a .linetriangle li{
+    position: relative;
 }
