@@ -233,7 +233,7 @@
             border-right: 0.001rem solid #fff;
         }
 
-        .s-kinds{
+        .s-kinds {
             height: 100%;
             padding: 0 0.1rem;
         }
@@ -450,10 +450,10 @@
                     <div class="hint flex fl-align fz-7" v-if="hint">
                         <span
                             style="color:#FF6600; width: 92%;height: 100%;overflow-x: auto;white-space:nowrap;margin-left: 0.04rem;">店铺活动：减满全部测试1件不打折111111111111111111111111111</span>
-                        <i class="hides"></i>
+                        <i class="hides" @click="hides"></i>
                     </div>
-                    <i class="attention" v-if="!hint"></i>
-                    <i class="sreach-icon"></i>
+                    <i class="attention" @click="hints" v-if="!hint"></i>
+                    <i class="sreach-icon" @click="tosreach"></i>
                 </div>
             </div>
         </div>
@@ -468,7 +468,17 @@
             covers: false,
             hint: false
         },
-        methods: {},
+        methods: {
+            hints: function () {
+                this.hint = true
+            },
+            hides: function () {
+                this.hint = false
+            },
+            tosreach: function () {
+                this.covers = true
+            }
+        },
         created: function () {
 
         }
