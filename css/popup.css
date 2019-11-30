@@ -6,10 +6,19 @@
 }
 
 /* 小弹窗：数据输入 */
-.s_wid_two{
-
+.s_wid_two {
+    width: 35%;
+    background: #fff;
+    margin: auto;
+    border-radius: 0.04rem;
+    position: relative;
+    z-index: 250;
 }
 
+.s_wid_num {
+    width: 100%;
+    padding: 0.15rem 0;
+}
 /* 大弹窗容器 */
 .b_wid{
 

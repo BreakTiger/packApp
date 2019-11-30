@@ -202,7 +202,7 @@
         }
 
         /* 弹窗 */
-        .sales{
+        .sales {
             width: 35%;
             background: #fff;
             margin: auto;
@@ -244,6 +244,20 @@
             background: rgb(255, 102, 0);
             padding: 0.02rem 0.03rem;
             border-radius: 0.02rem;
+        }
+
+        .s_wid_two {
+            width: 35%;
+            background: #fff;
+            margin: auto;
+            border-radius: 0.04rem;
+            position: relative;
+            z-index: 250;
+        }
+
+        .s_wid_num {
+            width: 100%;
+            padding: 0.15rem 0;
         }
     </style>
 </head>
@@ -462,12 +476,20 @@
                     <div class="s-list-item" v-for="item in rlist" @click="getreduced(item)">{{item.name}}</div>
                 </div>
             </div>
-            <!-- 全程折扣 -->
-            
+
+            <!-- 全场折扣 -->
+            <div class="s_wid_two b-ff flex col fl-align fz-7" v-if="discount">
+                <i class="close" style="position: absolute;right: 0.02rem;top:0.015rem;" @click="close"></i>
+                <div class="title b-9F c-ff">修改折扣率</div>
+                <div class="s_wid_num flex fl-align fl-jc">
+                    <input type="number" placeholder="请输入折扣" style="text-align: center;border: 0.01rem solid #999999;">
+                </div>
+                <div class="sure c-ff" style="margin-bottom: 0.1rem;">确定</div>
+            </div>
             <!-- 抹零 -->
 
             <!-- 应收总额 -->
-            
+
         </div>
     </div>
 </body>
@@ -506,6 +528,7 @@
                     name: "1件不打折 优惠0.25元"
                 },
             ],
+            discount: false,
             hint: false,
         },
         created: function () {
@@ -541,6 +564,7 @@
             todiscount: function () {
                 var that = this
                 that.covers = true
+                that.discount = true
             },
 
             // 抹零
@@ -553,6 +577,7 @@
                 this.covers = false
                 this.sale = false
                 this.reduced = false
+                this.discount = false
             },
 
             //搜索
