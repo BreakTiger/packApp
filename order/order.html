@@ -107,7 +107,6 @@
         }
 
         .add_s_kind {
-            width: 0.45rem;
             height: 100%;
         }
 
@@ -200,6 +199,54 @@
             background: url(../img/minus.png) no-repeat center;
             background-size: 100%;
             margin-left: 0.02rem;
+        }
+
+        /* 弹窗 */
+        .sales,
+        .reduced {
+            width: 35%;
+            background: #fff;
+            margin: auto;
+            border-radius: 0.04rem;
+            position: relative;
+            z-index: 250;
+        }
+
+        .title {
+            width: 100%;
+            text-align: center;
+            padding: 0.02rem 0;
+            border-radius: 0.04rem 0.04rem 0 0;
+        }
+
+        .s-list {
+            width: 100%;
+        }
+
+        .s-list-item {
+            width: 92%;
+            padding: 0.05rem 0;
+            text-align: center;
+        }
+
+        .s-list div:not(:first-child) {
+            border-top: 0.001rem solid #333;
+        }
+
+
+
+        .close {
+            display: inline-block;
+            width: 0.1rem;
+            height: 0.1rem;
+            background: url(../img/close.png) no-repeat center;
+            background-size: 100%;
+        }
+
+        .sure {
+            background: rgb(255, 102, 0);
+            padding: 0.02rem 0.03rem;
+            border-radius: 0.02rem;
         }
     </style>
 </head>
@@ -311,7 +358,7 @@
             <div class="control-content flex col fl-align b-DD fl-jse c-00">
                 <div class="c-line flex fl-align fl-jsb fz-7">
                     <span>销售员:</span>
-                    <span class="c-6C">选择销售员</span>
+                    <span class="c-6C" @click="tosales">{{sales}}</span>
                 </div>
                 <div class="c-line flex fl-align fl-jsb fz-7">
                     <span>商品小计:</span>
@@ -323,7 +370,7 @@
                     </span>
                     <div class="flex fl-align">
                         <span>-99.00</span>
-                        <i class="eduit"></i>
+                        <i class="eduit" @click="toreduced"></i>
                     </div>
                 </div>
                 <div class="c-line flex fl-align fl-jsb fz-7">
@@ -356,24 +403,11 @@
             </div>
             <div class="Btn-line flex fl-align fl-jsa fz-7">
                 <span class="b-DD c-6C" style="padding: 0.02rem 0.03rem;border-radius: 0.02rem;">计次卡</span>
-                <span style="background: #FF6600;padding: 0.02rem 0.03rem;border-radius: 0.02rem;"
-                    class="c-ff">收款(￥35.55)</span>
+                <span class="sure c-ff">收款(￥35.55)</span>
             </div>
         </div>
         <div class="right-box">
             <div class="f-kind b-9F flex">
-                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
-                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
-                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
-                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
-                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
-                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
-                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
-                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
-                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
-                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
-                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
-                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
                 <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
                 <div class="add_f_kind flex fl-align fl-jc">
                     <i class="add_f"></i>
@@ -381,13 +415,6 @@
                 </div>
             </div>
             <div class="s-kind flex fl-align" style="border-bottom: 0.001rem solid #999999;">
-                <div class="s-kinds fz-7 flex fl-align">小炒肉</div>
-                <div class="s-kinds fz-7 flex fl-align">小炒肉</div>
-                <div class="s-kinds fz-7 flex fl-align">小炒肉</div>
-                <div class="s-kinds fz-7 flex fl-align">小炒肉</div>
-                <div class="s-kinds fz-7 flex fl-align">小炒肉</div>
-                <div class="s-kinds fz-7 flex fl-align">小炒肉</div>
-                <div class="s-kinds fz-7 flex fl-align">小炒肉</div>
                 <div class="s-kinds fz-7 flex fl-align">小炒肉</div>
                 <div class="add_s_kind flex fl-align fz-7 fl-jc">
                     <i class="add_s"></i>
@@ -421,7 +448,24 @@
                 </div>
             </div>
         </div>
-        <div class="covers" v-if="covers"></div>
+        <div class="covers flex fl-align" v-if="covers">
+            <!-- 销售员 -->
+            <div class="sales b-ff flex col fl-align fz-7" v-if="sale">
+                <i class="close" style="position: absolute;right: 0.02rem;top:0.015rem;" @click="close"></i>
+                <div class="title b-9F c-ff">选择销售员</div>
+                <div class="s-list flex col fl-align">
+                    <div class="s-list-item" v-for="item in slist" @click="csales(item.name)">{{item.name}}</div>
+                </div>
+            </div>
+            <!-- 优惠 -->
+            <div class="sales b-ff flex col fl-align fz-7" v-if="reduced">
+                <i class="close" style="position: absolute;right: 0.02rem;top:0.015rem;" @click="close"></i>
+                <div class="title b-9F c-ff">选择销售员</div>
+                <div class="s-list flex col fl-align">
+                    <div class="s-list-item" v-for="item in rlist" @click="getreduced(item)">{{item.name}}</div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 <script>
@@ -430,21 +474,92 @@
         data: {
             value: 1,
             covers: false,
-            hint: false
-        },
-        methods: {
-            hints: function () {
-                this.hint = true
-            },
-            hides: function () {
-                this.hint = false
-            },
-            tosreach: function () {
-                this.covers = true
-            }
+            //销售员
+            sale: false,
+            sales: '选择销售员',
+            slist: [
+                {
+                    name: '店铺创建者'
+                },
+                {
+                    name: '收银员1'
+                },
+                {
+                    name: '收银员2'
+                }],
+            // 优惠
+            reduced: false,
+            rlist: [
+                {
+                    name: "1件5折 优惠12.60元"
+                },
+                {
+                    name: "1件6折 优惠10.08元"
+                },
+                {
+                    name: "10元优惠5元"
+                },
+                {
+                    name: "1件不打折 优惠0.25元"
+                },
+            ],
+            hint: false,
         },
         created: function () {
+            // 防止键盘出现后高度变化而变形
+            var deviceH = document.documentElement.clientHeight + "px";
+            $("body").attr("style", "height:" + deviceH);
+        },
+        methods: {
+            //销售员
+            tosales: function () {
+                var that = this
+                that.covers = true
+                that.sale = true
+            },
+            csales: function (e) {
+                var that = this
+                that.sales = e
+                that.covers = false
+                that.sale = false
+            },
+            //优惠
+            toreduced: function () {
+                var that = this
+                that.covers = true
+                that.reduced = true
+            },
+            getreduced: function (e) {
+                var that = this
+                console.log(e)
+                that.covers = false
+                that.reduced = false
+            },
+            // 全程折扣
 
+            // 抹零
+
+            // 应收金额
+
+
+            //搜索
+            tosreach: function () {
+                // this.covers = true
+            },
+
+            // 关闭弹窗
+            close: function () {
+                this.covers = false
+                this.sale = false
+                this.reduced = false
+            },
+            // 活动信息
+            hints: function () {
+                // this.hint = true
+            },
+            hides: function () {
+                // this.hint = false
+            }
         }
     })
 </script>
