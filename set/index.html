@@ -34,7 +34,6 @@
 		.list-item {
 			width: 100%;
 			padding: 0.03rem 0;
-			border: none;
 		}
 
 		.list-item:nth-child(3),
@@ -169,8 +168,8 @@
 				</div>
 			</div>
 		</div>
-		<!-- 右边tab内容 -->
 		<div class="right-box">
+			<!-- 交班 -->
 			<div id="jiao" class="flex col">
 				<div class="tab-top b-9F fz-10 c-ff">交班</div>
 				<div class="tab-content flex col">
@@ -202,7 +201,6 @@
 							<span class="c-33">{{item.money}}</span>
 						</div>
 					</div>
-					<!-- 多选框 -->
 					<div class="choice-line flex fl-align">
 						<input type="checkbox">
 						<label for="" class="fz-10 c-00">打印账单列表</label>
@@ -215,8 +213,18 @@
 					</div>
 				</div>
 			</div>
-		</div>
+			<!-- 店铺信息 -->
+			<!-- 员工管理 -->
+			<!-- 收款方式 -->
+			<!-- 外卖 -->
+			<!-- 扫码点餐 -->
+			<!-- 副屏广告 -->
+			<!-- 打印机 -->
+			<!-- 通用 -->
+			<!-- 更新数据 -->
+			<!-- 关于 -->
 
+		</div>
 	</div>
 </body>
 <script>
@@ -228,63 +236,51 @@
 				id: 0,
 				icon: '../img/jiao.png',
 				name: '交班',
-				path: ''
 			},
 			{
 				id: 1,
 				icon: '../img/shop.png',
 				name: '店铺信息',
-				path: ''
 			}, {
 				id: 2,
 				icon: '../img/manage.png',
 				name: '员工管理',
-				path: ''
 			},
 			{
 				id: 3,
 				icon: '../img/gathering.png',
 				name: '收款方式',
-				path: ''
 			}, {
 				id: 4,
 				icon: '../img/takeout.png',
 				name: '外卖',
-				path: ''
 			}, {
 				id: 5,
 				icon: '../img/scan.png',
 				name: '扫码点餐',
-				path: ''
 			}, {
 				id: 6,
 				icon: '../img/fu.png',
 				name: '副屏广告',
-				path: ''
 			}, {
 				id: 7,
 				icon: '../img/print.png',
 				name: '打印机',
-				path: ''
 			},
 			{
 				id: 8,
 				icon: '../img/general.png',
 				name: '通用',
-				path: ''
 			},
 			{
 				id: 9,
 				icon: '../img/update.png',
 				name: '更新数据',
-				path: ''
 			}, {
 				id: 10,
 				icon: '../img/about.png',
 				name: '关于',
-				path: ''
-			}
-			],
+			}],
 			choices: 0,
 			paylist: [{
 				name: '支付宝支付(2笔)',
