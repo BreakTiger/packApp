@@ -176,6 +176,21 @@ table {
     min-height: 100vh;
 }
 
+.left-box {
+    width: 30%;
+    height: 100vh;
+}
+
+.left-top{
+    width: 100%;
+    height: 0.2rem;
+}
+
+.right-box {
+    width: 70%;
+    height: 100vh;
+}
+
 
 /* 选择白三角 */
 .linetriangle{
@@ -204,4 +219,15 @@ table {
     position: fixed;
     top: 0rem;
     z-index: 200;
+}
+
+.icon-1{
+    display: inline-block;
+    width: 0.1rem;
+    height: 0.1rem;
+}
+
+/* 防止闪烁 */
+[v-cloak]{
+    display: none;
 }

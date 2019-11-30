@@ -14,7 +14,6 @@
         .nav-top {
             width: 100%;
             height: 8.6957vh;
-            background: #0099FF;
             line-height: 0.2rem;
         }
 
@@ -28,9 +27,6 @@
         }
 
         .sreach {
-            display: inline-block;
-            width: 0.1rem;
-            height: 0.1rem;
             background: url(../img/sreach.png) no-repeat center;
             background-size: 100%;
             vertical-align: middle;
@@ -57,9 +53,6 @@
         }
 
         .sreach-icon {
-            display: inline-block;
-            width: 0.1rem;
-            height: 0.1rem;
             background: url(../img/sreach.png) no-repeat center;
             background-size: 100%;
             margin: 0 0.02rem;
@@ -76,9 +69,6 @@
         }
 
         .close {
-            display: inline-block;
-            width: 0.1rem;
-            height: 0.1rem;
             background: url(../img/close.png) no-repeat center;
             background-size: 100%;
             margin-left: 0.05rem;
@@ -125,12 +115,12 @@
 
 <body>
     <div id="app">
-        <div class="nav-top">
+        <div class="nav-top b-9F">
             <div class="flex fl-align fl-jsb fz-10" style="width: 100%;height: 100%;" v-if="sreach">
                 <i class="back" @click="back"></i>
                 <span class="c-ff" style="margin-left: 0.6rem;">账单</span>
                 <div style="margin-right: 0.04rem;position: relative;" class="c-6C">
-                    <i class="sreach" @click="tosreach"></i>
+                    <i class="sreach icon-1" @click="tosreach"></i>
                     <span class="fz-7 wait b-ff" @click="waits">待支付订单</span>
                     <span class="fz-5 c-ff num">1</span>
                     <span class="fz-7 screen b-ff">筛选</span>
@@ -139,9 +129,9 @@
             <div class="flex fl-align fl-jsb fz-10" style="width: 100%;height: 100%;" v-if="!sreach">
                 <i class="back" @click="toback"></i>
                 <div class="sreach-lines flex fl-align">
-                    <i class="sreach-icon"></i>
+                    <i class="sreach-icon icon-1"></i>
                     <input type="text" class="s-input c-ff fz-7" v-model="initial" placeholder="输入商品名称，订单号后6位搜索订单">
-                    <i class="close" v-if="initial" @click="clear"></i>
+                    <i class="close icon-1" v-if="initial" @click="clear"></i>
                 </div>
                 <span class="c-6C b-ff fz-7"
                     style="margin-right: 0.04rem;height: 0.12rem;line-height: 0.12rem;padding: 0 0.02rem;border-radius: 0.02rem;">搜索</span>

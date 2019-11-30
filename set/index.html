@@ -14,28 +14,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
 	<style>
-		#setting {
-			width: 100%;
-			min-height: 100vh;
-		}
-
-		.left-nav {
-			width: 30%;
-			height: 100vh;
-		}
-
-		.right-tab {
-			width: 70%;
-			height: 100vh;
-			overflow: auto;
-		}
-
-		.nav-top {
-			width: 100%;
-			height: 0.2rem;
-			background: #0099FF;
-		}
-
 		.back {
 			display: block;
 			width: 0.1rem;
@@ -75,8 +53,8 @@
 			background: #C0C0C0;
 		}
 
-		/* tab */
-		#about {
+		/* tab1 */
+		#jiao {
 			width: 100%;
 			height: 100%;
 		}
@@ -84,50 +62,102 @@
 		.tab-top {
 			width: 100%;
 			height: 0.2rem;
-			background: #0099FF;
 			text-align: center;
 			line-height: 0.2rem;
 		}
 
-		.content {
+		.tab-content {
 			width: 100%;
 			height: 100%;
 			overflow-y: scroll;
 		}
 
-		.codes {
+		.line {
+			margin-left: 0.1rem;
+			margin-top: 0.06rem;
+		}
+
+		.keep {
+			display: inline-block;
 			width: 0.8rem;
-			height: 0.8rem;
-			margin-top: 0.1rem;
-			margin-bottom: 0.04rem;
 		}
 
-		.about-info {
-			width: 92%;
-			margin: 0.08rem 0;
-		}
-
-		.lines {
-			padding: 0.04rem 0;
-		}
-
-		.go-icon{
-			display: block;
-			width: 0.1rem;
-			height: 0.1rem;
-			background: url(../img/go.png) no-repeat center;
+		.eduit {
+			background: url(../img/eduit.png) no-repeat center;
 			background-size: 100%;
 		}
 
-		/* 遮罩 */
+		.pay-way {
+			width: 92%;
+			height: 1.2rem;
+			background: #C0C0C0;
+			margin: 0.1rem 0.06rem 0rem 0.05rem;
+		}
+
+		.title-line {
+			width: 100%;
+			padding: 0.03rem 0;
+			border-bottom: 0.001rem solid #999999;
+		}
+
+		.title-line>span:first-child {
+			margin-left: 0.05rem;
+		}
+
+		.title-line>span:last-child {
+			margin-right: 0.05rem;
+		}
+
+		.pay-list-item {
+			margin-top: 0.05rem;
+		}
+
+		.pay-list-item>span:first-child {
+			margin-left: 0.05rem;
+		}
+
+		.pay-list-item>span:last-child {
+			margin-right: 0.05rem;
+		}
+
+		.Btn-line {
+			width: 92%;
+			justify-content: flex-end;
+			margin-left: 0.1rem;
+			margin-top: 0.04rem;
+		}
+
+		.Btn-line>span {
+			width: 0.5rem;
+			text-align: center;
+			padding: 0.03rem 0;
+			border-radius: 0.04rem;
+		}
+
+		.exit {
+			background: grey;
+			margin-right: 0.1rem;
+		}
+
+		.change {
+			background: #FF6600;
+		}
+
+		.choice-line {
+			margin-left: 0.1rem;
+		}
+
+		.choice-line>input {
+			width: 0.1rem;
+			height: 0.1rem;
+		}
 	</style>
 </head>
 
 <body>
-	<div id="setting" class="flex fl-align" v-cloak>
-		<!-- 左边导航 -->
-		<div class="left-nav flex col fl-align">
-			<div class="nav-top flex fl-align">
+	<div id="app" class="flex fl-align" v-cloak>
+		<div class="left-box flex col fl-align">
+			<div class="left-top flex fl-align b-9F">
 				<i class="back"></i>
 				<span class="fz-10 c-ff">设置</span>
 			</div>
@@ -140,65 +170,58 @@
 			</div>
 		</div>
 		<!-- 右边tab内容 -->
-		<div class="right-tab">
-			<div id="about" class="flex col">
-				<div class="tab-top c-ff fz-10">关于</div>
-				<div class="content flex col fl-align">
-					<div class="two-code flex fl-align fl-jsb" style="width: 70%;">
-						<div class="flex col fl-align">
-							<img src="../img/2.jpg" class="codes">
-							<span class="fz-7">想米微信公众号</span>
+		<div class="right-box">
+			<div id="jiao" class="flex col">
+				<div class="tab-top b-9F fz-10 c-ff">交班</div>
+				<div class="tab-content flex col">
+					<div class="line fz-10">
+						<span class="c-00">当班人员：</span>
+						<span>店铺创建者</span>
+					</div>
+					<div class="line fz-10">
+						<span class="c-00">当班日期：</span>
+						<span>11-21 17：04至11-25 16：57</span>
+					</div>
+					<div class="line fz-10">
+						<span class="c-00">上班备用金：</span>
+						<span class="keep">0.00</span>
+						<i class="eduit icon-1"></i>
+					</div>
+					<div class="line fz-10">
+						<span class="c-00">预留备用金：</span>
+						<span class="keep">0.00</span>
+						<i class="eduit icon-1"></i>
+					</div>
+					<div class="pay-way">
+						<div class="title-line flex fl-align fl-jsb fz-10 c-00">
+							<span>支付方式（笔数）</span>
+							<span>金额</span>
 						</div>
-						<div class="flex col fl-align">
-							<img src="../img/2.jpg" class="codes">
-							<span class="fz-7">想米微信客服</span>
+						<div class="pay-list-item flex fl-align fl-jsb fz-10" v-for="item in paylist">
+							<span class="c-00">{{item.name}}</span>
+							<span class="c-33">{{item.money}}</span>
 						</div>
 					</div>
-					<div class="about-info b-C0">
-						<div class="lines flex fl-align fl-jsb fz-5">
-							<span class="c-00" class="c-00" style="margin-left:0.04rem;">检查更新</span>
-							<div class="flex fl-align" style="margin-right: 0.04rem;">
-								<span>v2.5.6.4</span>
-								<i class="go-icon"></i>
-							</div>
-						</div>
-						<div class="lines flex fl-align fl-jsb fz-5">
-							<span class="c-00" style="margin-left:0.04rem;">客服热线</span>
-							<span class="c-00" style="margin-right:0.04rem;">v2.5.6.4</span>
-						</div>
-						<div class="lines flex fl-align fl-jsb fz-5">
-							<span class="c-00" class="c-00" style="margin-left:0.04rem;">服务协议</span>
-							<i class="go-icon" style="margin-right: 0.04rem;"></i>
-						</div>
-						<div class="lines flex fl-align fl-jsb fz-5">
-							<span class="c-00" class="c-00" style="margin-left:0.04rem;">远程协助</span>
-							<i class="go-icon" style="margin-right: 0.04rem;"></i>
-						</div>
-						<div class="lines flex fl-align fl-jsb fz-5">
-							<span class="c-00" class="c-00" style="margin-left:0.04rem;">系统设置</span>
-							<i class="go-icon" style="margin-right: 0.04rem;"></i>
-						</div>
-						<div class="lines flex fl-align fl-jsb fz-5">
-							<span class="c-00" class="c-00" style="margin-left:0.04rem;">文件管理器</span>
-							<i class="go-icon" style="margin-right: 0.04rem;"></i>
-						</div>
-						<div class="lines flex fl-align fl-jsb fz-5">
-							<span class="c-00" class="c-00" style="margin-left:0.04rem;">网络检测</span>
-							<i class="go-icon" style="margin-right: 0.04rem;"></i>
-						</div>
+					<!-- 多选框 -->
+					<div class="choice-line flex fl-align">
+						<input type="checkbox">
+						<label for="" class="fz-10 c-00">打印账单列表</label>
+						<input type="checkbox">
+						<label for="" class="fz-10 c-00">打印销售列表</label>
+					</div>
+					<div class="Btn-line flex fl-align fz-10">
+						<span class="exit c-00">退出</span>
+						<span class="change c-ff">交班</span>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- 遮罩 -->
-		<div class="cover">
 
-		</div>
 	</div>
 </body>
 <script>
 	new Vue({
-		el: '#setting',
+		el: '#app',
 		data: {
 			checked: true,
 			list: [{

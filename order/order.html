@@ -14,35 +14,18 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
     <style>
-        .left {
-            width: 30%;
-            height: 100vh;
-        }
-
-        .right {
-            width: 70%;
-            height: 100vh;
-            overflow-y: scroll;
-        }
-
         .nav-line {
             width: 100%;
             height: 0.2rem;
         }
 
         .back {
-            display: inline-block;
-            width: 0.1rem;
-            height: 0.1rem;
             background: url(../img/back.png) no-repeat center;
             background-size: 100%;
             margin-left: 0.04rem;
         }
 
         .list-icon {
-            display: inline-block;
-            width: 0.1rem;
-            height: 0.1rem;
             background: url(../img/list.png) no-repeat center;
             background-size: 100%;
             margin-right: 0.04rem;
@@ -67,18 +50,12 @@
         }
 
         .nums {
-            text-align: center;
             height: 4%;
         }
 
         .control-content {
             width: 100%;
             height: 32%;
-        }
-
-        .Btn-line {
-            width: 100%;
-            height: 8.8%;
         }
 
         .c-line {
@@ -94,17 +71,52 @@
             margin-left: 0.01rem;
         }
 
-        .f-kind {
+        .Btn-line {
+            width: 100%;
+            height: 8.8%;
+        }
+
+        .f-kind,
+        .s-kind {
             height: 0.2rem;
             overflow-y: hidden;
             white-space: nowrap;
         }
 
-        .s-kind {
-            height: 0.2rem;
-            overflow-y: hidden;
-            white-space: nowrap;
-            border-bottom: 0.001rem solid #999999;
+        .f-kinds {
+            border-right: 0.001rem solid #fff;
+            padding: 0 0.15rem;
+        }
+
+        .add_f_kind {
+            padding: 0 0.04rem;
+            border-right: 0.001rem solid #fff;
+        }
+
+        .add_f {
+            display: block;
+            width: 0.08rem;
+            height: 0.08rem;
+            background: url(../img/w_add.png) no-repeat center;
+            background-size: 100%;
+        }
+
+        .s-kinds {
+            height: 100%;
+            padding: 0 0.1rem;
+        }
+
+        .add_s_kind {
+            width: 0.45rem;
+            height: 100%;
+        }
+
+        .add_s {
+            display: block;
+            width: 0.06rem;
+            height: 0.06rem;
+            background: url(../img/add.png) no-repeat center;
+            background-size: 100%;
         }
 
         .menu {
@@ -146,19 +158,6 @@
             margin-bottom: 0.06rem;
         }
 
-        .add_s_kind {
-            width: 0.45rem;
-            height: 100%;
-        }
-
-        .add_s {
-            display: block;
-            width: 0.06rem;
-            height: 0.06rem;
-            background: url(../img/add.png) no-repeat center;
-            background-size: 100%;
-        }
-
         .add-icon {
             display: block;
             width: 0.1rem;
@@ -179,9 +178,6 @@
         }
 
         .sreach-icon {
-            display: block;
-            width: 0.1rem;
-            height: 0.1rem;
             background: url(../img/sreach.png) no-repeat center;
             background-size: 100%;
             position: fixed;
@@ -201,47 +197,20 @@
         }
 
         .hides {
-            display: block;
-            width: 0.1rem;
-            height: 0.1rem;
             background: url(../img/minus.png) no-repeat center;
             background-size: 100%;
             margin-left: 0.02rem;
-        }
-
-        .add_f_kind {
-            padding: 0 0.04rem;
-            border-right: 0.001rem solid #fff;
-        }
-
-        .add_f {
-            display: block;
-            width: 0.08rem;
-            height: 0.08rem;
-            background: url(../img/w_add.png) no-repeat center;
-            background-size: 100%;
-        }
-
-        .f-kinds {
-            padding: 0 0.04rem;
-            line-height: 0.2rem;
-            border-right: 0.001rem solid #fff;
-        }
-
-        .s-kinds {
-            height: 100%;
-            padding: 0 0.1rem;
         }
     </style>
 </head>
 
 <body>
-    <div id="app" class="flex fl-align">
-        <div class="left">
-            <div class="nav-line b-9F fz-10 flex fl-align fl-jsb">
-                <i class="back"></i>
+    <div id="app" class="flex fl-align" v-cloak>
+        <div class="left-box">
+            <div class="left-top b-9F fz-10 flex fl-align fl-jsb">
+                <i class="back icon-1"></i>
                 <span class="c-ff">点餐</span>
-                <i class="list-icon"></i>
+                <i class="list-icon icon-1"></i>
             </div>
             <div class="order-list-content flex col fl-align">
                 <div class="order-list-item flex col fl-align fz-7">
@@ -391,26 +360,27 @@
                     class="c-ff">收款(￥35.55)</span>
             </div>
         </div>
-        <div class="right">
+        <div class="right-box">
             <div class="f-kind b-9F flex">
-                <div class="f-kinds fz-7 c-ff linetriangle">川菜</div>
-                <div class="f-kinds fz-7 c-ff">湘菜</div>
-                <div class="f-kinds fz-7 c-ff">粤菜</div>
-                <div class="f-kinds fz-7 c-ff">广东菜</div>
-                <div class="f-kinds fz-7 c-ff">川菜</div>
-                <div class="f-kinds fz-7 c-ff">湘菜</div>
-                <div class="f-kinds fz-7 c-ff">粤菜</div>
-                <div class="f-kinds fz-7 c-ff">广东菜</div>
-                <div class="f-kinds fz-7 c-ff">川菜</div>
-                <div class="f-kinds fz-7 c-ff">湘菜</div>
-                <div class="f-kinds fz-7 c-ff">粤菜</div>
-                <div class="f-kinds fz-7 c-ff">广东菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
+                <div class="f-kinds fz-7 c-ff flex fl-align fl-jc">川菜</div>
                 <div class="add_f_kind flex fl-align fl-jc">
                     <i class="add_f"></i>
                     <span class="c-ff fz-7">添加大类</span>
                 </div>
             </div>
-            <div class="s-kind flex fl-align">
+            <div class="s-kind flex fl-align" style="border-bottom: 0.001rem solid #999999;">
                 <div class="s-kinds fz-7 flex fl-align">小炒肉</div>
                 <div class="s-kinds fz-7 flex fl-align">小炒肉</div>
                 <div class="s-kinds fz-7 flex fl-align">小炒肉</div>
@@ -426,7 +396,6 @@
             </div>
             <div class="menu">
                 <div class="menu-list flex fl-w">
-
                     <div class="menu-item b-DD flex fl-align">
                         <div class="g-img flex col fl-align fl-jse">
                             <img src="../img/2.jpg">
@@ -439,16 +408,16 @@
                         </div>
                     </div>
                     <div class="add-menu-item b-DD flex col fl-align fz-7 fl-jse">
-                        <i class="add-icon"></i>
+                        <i class="add-icon icon"></i>
                         <span>添加商品</span>
                     </div>
                     <div class="hint flex fl-align fz-7" v-if="hint">
                         <span
                             style="color:#FF6600; width: 92%;height: 100%;overflow-x: auto;white-space:nowrap;margin-left: 0.04rem;">店铺活动：减满全部测试1件不打折111111111111111111111111111</span>
-                        <i class="hides" @click="hides"></i>
+                        <i class="hides icon-1" @click="hides"></i>
                     </div>
-                    <i class="attention" @click="hints" v-if="!hint"></i>
-                    <i class="sreach-icon" @click="tosreach"></i>
+                    <i class="attention icon-1" @click="hints" v-if="!hint"></i>
+                    <i class="sreach-icon icon-1" @click="tosreach"></i>
                 </div>
             </div>
         </div>
