@@ -37,7 +37,7 @@ input {
 }
 
 
-/* 寮规€� */
+/* 弹性 */
 .flex {
     display: flex;
     display: -webkit-flex;
@@ -155,6 +155,7 @@ table {
     color: #0066CC !important;
 }
 
+/* 超出部分省略号 */
 .clamp1 {
     overflow:hidden;
     white-space: nowrap;
@@ -169,14 +170,10 @@ table {
     -webkit-line-clamp:2;
 }
 
-
-.covers {
+/* 以下为容器共用部分： */
+#app {
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0rem;
-    z-index: 200;
+    min-height: 100vh;
 }
 
 
@@ -196,4 +193,15 @@ table {
 
 .linetriangle div,.linetriangle span, .linetriangle a .linetriangle li{
     position: relative;
+}
+
+
+/* 遮罩 */
+.covers {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0rem;
+    z-index: 200;
 }

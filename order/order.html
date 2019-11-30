@@ -14,11 +14,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
     <style>
-        #order {
-            width: 100%;
-            min-height: 100vh;
-        }
-
         .left {
             width: 30%;
             height: 100vh;
@@ -241,7 +236,7 @@
 </head>
 
 <body>
-    <div id="order" class="flex fl-align">
+    <div id="app" class="flex fl-align">
         <div class="left">
             <div class="nav-line b-9F fz-10 flex fl-align fl-jsb">
                 <i class="back"></i>
@@ -462,7 +457,7 @@
 </body>
 <script>
     new Vue({
-        el: "#order",
+        el: "#app",
         data: {
             value: 1,
             covers: false,
