@@ -202,8 +202,7 @@
         }
 
         /* 弹窗 */
-        .sales,
-        .reduced {
+        .sales{
             width: 35%;
             background: #fff;
             margin: auto;
@@ -232,8 +231,6 @@
         .s-list div:not(:first-child) {
             border-top: 0.001rem solid #333;
         }
-
-
 
         .close {
             display: inline-block;
@@ -379,7 +376,7 @@
                     </span>
                     <div class="flex fl-align">
                         <span>-13.00</span>
-                        <i class="eduit"></i>
+                        <i class="eduit" @click="todiscount"></i>
                     </div>
                 </div>
                 <div class="c-line flex fl-align fl-jsb fz-7">
@@ -465,6 +462,13 @@
                     <div class="s-list-item" v-for="item in rlist" @click="getreduced(item)">{{item.name}}</div>
                 </div>
             </div>
+            <!-- 全程折扣 -->
+            
+
+
+            <!-- 抹零 -->
+
+            <!-- 应收总额 -->
         </div>
     </div>
 </body>
@@ -531,21 +535,19 @@
             },
             getreduced: function (e) {
                 var that = this
-                console.log(e)
                 that.covers = false
                 that.reduced = false
             },
             // 全程折扣
+            todiscount: function () {
+                var that = this
+                that.covers = true
+            },
 
             // 抹零
 
             // 应收金额
 
-
-            //搜索
-            tosreach: function () {
-                // this.covers = true
-            },
 
             // 关闭弹窗
             close: function () {
@@ -553,12 +555,18 @@
                 this.sale = false
                 this.reduced = false
             },
+
+            //搜索
+            tosreach: function () {
+                // this.covers = true
+            },
+
             // 活动信息
             hints: function () {
-                // this.hint = true
+                this.hint = true
             },
             hides: function () {
-                // this.hint = false
+                this.hint = false
             }
         }
     })
