@@ -104,6 +104,7 @@
 
 		.checkbox-line {
 			margin-left: 0.1rem;
+			margin: 0.1rem;
 		}
 
 		.checkbox-line>input {
@@ -193,8 +194,6 @@
 
 		.pay-list-item {
 			width: 96%;
-			padding: 0.04rem 0;
-			background: #C0C0C0;
 			margin-left: 0.05rem;
 			margin-top: 0.04rem;
 		}
@@ -341,7 +340,6 @@
 		.up-Btn {
 			width: 0.5rem;
 			height: 0.5rem;
-			text-align: center;
 			line-height: 0.5rem;
 			border: 0.01rem solid #999;
 			border-radius: 50%;
@@ -350,7 +348,6 @@
 		.tab-top {
 			width: 100%;
 			height: 0.2rem;
-			text-align: center;
 			line-height: 0.2rem;
 		}
 
@@ -421,7 +418,7 @@
 							<span>支付方式（笔数）</span>
 							<span>金额</span>
 						</div>
-						<div class="pay-list-item flex fl-align fl-jsb fz-10" v-for="item in paylist">
+						<div class="pay-list-item b-C0 flex fl-align fl-jsb fz-7" v-for="item in paylist">
 							<span class="c-00">{{item.name}}</span>
 							<span class="c-33">{{item.money}}</span>
 						</div>
@@ -542,7 +539,7 @@
 				</div>
 				<div class="tab-content flex col b-ff">
 					<div class="fz-7 c-00" style="margin: 0.04rem 0px 0rem 0.05rem;">您可以开启或者添加店内常用的收款方式</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">现金</span>
 							<span>顾客使用现金付款时试用。（仅记账，不涉及与本平台结算）</span>
@@ -551,7 +548,7 @@
 							<van-switch v-model="checked" />
 						</div>
 					</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">会员卡</span>
 							<span>顾客使用会员卡(仅限本平台创建)付款时试用，自动扣减对应金额</span>
@@ -560,7 +557,7 @@
 							<van-switch v-model="checked" />
 						</div>
 					</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">挂账</span>
 							<span>挂账</span>
@@ -569,7 +566,7 @@
 							<van-switch v-model="checked" />
 						</div>
 					</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">信用卡</span>
 							<span>顾客使用信用卡付款时使用。(仅记账，不涉及与本平台结算)</span>
@@ -578,7 +575,7 @@
 							<van-switch v-model="checked" />
 						</div>
 					</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">现金券</span>
 							<span>顾客使用现金券付款时使用。(仅记账，不涉及与本平台结算)</span>
@@ -587,7 +584,7 @@
 							<van-switch v-model="checked" />
 						</div>
 					</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">混合支付</span>
 							<span>顾客使用多种付款方式付款时使用。</span>
@@ -596,7 +593,7 @@
 							<van-switch v-model="checked" />
 						</div>
 					</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">扫码收款</span>
 							<span>顾客使用微信和支付宝付款时使用，商家可前往想米公众号进行提现，<span class="c-6C">查看提现说明</span></span>
@@ -605,7 +602,7 @@
 							<van-switch v-model="checked" />
 						</div>
 					</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">收款码</span>
 							<span>顾客使用微信或支付宝扫描本店台卡收款码付款时使用，<span class="c-6C">查看提现说明</span></span>
@@ -614,7 +611,7 @@
 							<van-switch v-model="checked" />
 						</div>
 					</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">微信(标记)</span>
 							<span>商家使用非本平台的微信收款码收款。(仅记账，不涉及与本平台结算)</span>
@@ -623,7 +620,7 @@
 							<van-switch v-model="checked" />
 						</div>
 					</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">支付宝(标记)</span>
 							<span>商家使用非本平台的支付宝收款码收款。(仅记账，不涉及与本平台结算)</span>
@@ -632,7 +629,7 @@
 							<van-switch v-model="checked" />
 						</div>
 					</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">微信(标记)</span>
 							<span>顾客使用现金券付款时使用。(仅记账，不涉及与本平台结算)</span>
@@ -641,7 +638,7 @@
 							<van-switch v-model="checked" />
 						</div>
 					</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">云闪付(标记)</span>
 							<span>商家使用非本平台的云闪付收款码收款。(仅记账，不涉及与本平台结算)</span>
@@ -650,7 +647,7 @@
 							<van-switch v-model="checked" />
 						</div>
 					</div>
-					<div class="pay-list-item flex fl-align">
+					<div class="pay-list-item lines b-C0 flex fl-align">
 						<div class="left flex col fz-7">
 							<span class="c-00">翼支付(标记)</span>
 							<span>商家使用非本平台的翼支付收款码收款。(仅记账，不涉及与本平台结算)</span>
@@ -699,7 +696,7 @@
 							<span class="c-00">前台小票打印数量</span>
 							<p class="fz-5">商家接单后，前台小票打印的数量</p>
 						</div>
-						<span class="fz-7 c-00" style="margin-right: 0.05rem;width: 0.2rem;text-align: center;">1</span>
+						<span class="fz-7 c-00 t-ac" style="margin-right: 0.05rem;width: 0.2rem;">1</span>
 					</div>
 				</div>
 			</div>
@@ -920,9 +917,7 @@
 				<div class="tab-content flex col fl-align b-ff">
 					<span class="fz-5 c-33" style="margin-top: 0.3rem;margin-bottom: 0.1rem;">上次同步时间：2019-11-26
 						18：26：59</span>
-					<div class="up-Btn fz-5">
-						更新
-					</div>
+					<div class="up-Btn t-ac fz-5">更新</div>
 				</div>
 			</div>
 			<!-- 关于 -->
