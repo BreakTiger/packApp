@@ -1,3 +1,13 @@
+/* 遮罩 */
+.covers {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0rem;
+    z-index: 200;
+}
+
 /* 弹窗样式css */
 
 /* 小弹窗:列表 */
