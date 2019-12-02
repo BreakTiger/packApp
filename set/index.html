@@ -53,7 +53,7 @@
 		}
 
 		/* tab1 */
-		#jiao {
+		.tabs {
 			width: 100%;
 			height: 100%;
 		}
@@ -61,7 +61,6 @@
 		.tab-top {
 			width: 100%;
 			height: 0.2rem;
-			text-align: center;
 			line-height: 0.2rem;
 		}
 
@@ -71,7 +70,7 @@
 			overflow-y: scroll;
 		}
 
-		.line {
+		.line-type-one {
 			margin-left: 0.1rem;
 			margin-top: 0.06rem;
 		}
@@ -89,7 +88,6 @@
 		.pay-way {
 			width: 92%;
 			height: 1.2rem;
-			background: #C0C0C0;
 			margin: 0.1rem 0.06rem 0rem 0.05rem;
 		}
 
@@ -121,14 +119,12 @@
 
 		.Btn-line {
 			width: 92%;
-			justify-content: flex-end;
 			margin-left: 0.1rem;
 			margin-top: 0.04rem;
 		}
 
 		.Btn-line>span {
 			width: 0.5rem;
-			text-align: center;
 			padding: 0.03rem 0;
 			border-radius: 0.04rem;
 		}
@@ -142,13 +138,118 @@
 			background: #FF6600;
 		}
 
-		.choice-line {
+		.checkbox-line {
 			margin-left: 0.1rem;
 		}
 
-		.choice-line>input {
+		.checkbox-line>input {
 			width: 0.1rem;
 			height: 0.1rem;
+		}
+
+		/* tab2 */
+		.save-btn {
+			width: 0.28rem;
+			height: 0.14rem;
+			line-height: 0.14rem;
+			border-radius: 0.03rem;
+			margin-right: 0.05rem;
+			margin-left: 0.8rem;
+		}
+
+		.infos {
+			width: 88%;
+			margin: auto;
+			margin-top: 0.08rem;
+		}
+
+		.line-type-two {
+			margin-top: 0.05rem;
+		}
+
+		.line-type-two:last-child {
+			margin-bottom: 0.05rem;
+		}
+
+		.line-type-two>span:first-child {
+			margin-left: 0.05rem;
+			margin-right: 0.04rem;
+		}
+
+		.input-line {
+			width: 1.75rem;
+			height: 0.12rem;
+		}
+
+		/* tab3 */
+		.add-btn {
+			width: 0.28rem;
+			height: 0.14rem;
+			line-height: 0.14rem;
+			border-radius: 0.03rem;
+			margin-right: 0.05rem;
+			margin-left: 0.8rem;
+		}
+
+		.tables {
+			width: 92%;
+			height: 96%;
+			margin-top: 4%;
+			border-radius: 0.04rem 0.0.4rem 0 0;
+		}
+
+		td {
+			text-align: center;
+		}
+
+		thead tr th,
+		tbody tr td {
+			padding: 0.03rem 0;
+			text-align: center;
+		}
+
+		tbody tr:nth-child(odd) {
+			background: #C0C0C0;
+		}
+
+
+		/* tab4 */
+		.sort {
+			width: 0.25rem;
+			height: 0.15rem;
+			line-height: 0.15rem;
+			border-radius: 0.02rem;
+			margin-left: 0.55rem;
+		}
+
+		.add {
+			width: 0.25rem;
+			height: 0.15rem;
+			line-height: 0.15rem;
+			border-radius: 0.02rem;
+			margin-left: 0.1rem;
+			margin-right: 0.08rem;
+		}
+
+
+
+		.pay-list-item {
+			width: 96%;
+			padding: 0.04rem 0;
+			background: #C0C0C0;
+			margin-left: 0.05rem;
+			margin-top: 0.04rem;
+		}
+
+		.left {
+			margin-left: 0.04rem;
+			width: 82%;
+		}
+
+		.right {
+			width: 18%;
+			height: 100%;
+			justify-content: center;
 		}
 	</style>
 </head>
@@ -170,28 +271,28 @@
 		</div>
 		<div class="right-box">
 			<!-- 交班 -->
-			<div id="jiao" class="flex col">
-				<div class="tab-top b-9F fz-10 c-ff">交班</div>
+			<div class="tabs flex col" v-if="choices==0">
+				<div class="tab-top t-ac b-9F fz-10 c-ff">交班</div>
 				<div class="tab-content flex col">
-					<div class="line fz-10">
+					<div class="line-type-one fz-10">
 						<span class="c-00">当班人员：</span>
 						<span>店铺创建者</span>
 					</div>
-					<div class="line fz-10">
+					<div class="line-type-one fz-10">
 						<span class="c-00">当班日期：</span>
 						<span>11-21 17：04至11-25 16：57</span>
 					</div>
-					<div class="line fz-10">
+					<div class="line-type-one fz-10">
 						<span class="c-00">上班备用金：</span>
 						<span class="keep">0.00</span>
 						<i class="eduit icon-1"></i>
 					</div>
-					<div class="line fz-10">
+					<div class="line-type-one fz-10">
 						<span class="c-00">预留备用金：</span>
 						<span class="keep">0.00</span>
 						<i class="eduit icon-1"></i>
 					</div>
-					<div class="pay-way">
+					<div class="pay-way b-C0">
 						<div class="title-line flex fl-align fl-jsb fz-10 c-00">
 							<span>支付方式（笔数）</span>
 							<span>金额</span>
@@ -201,21 +302,241 @@
 							<span class="c-33">{{item.money}}</span>
 						</div>
 					</div>
-					<div class="choice-line flex fl-align">
+					<div class="checkbox-line flex fl-align fz-10">
 						<input type="checkbox">
 						<label for="" class="fz-10 c-00">打印账单列表</label>
 						<input type="checkbox">
 						<label for="" class="fz-10 c-00">打印销售列表</label>
 					</div>
-					<div class="Btn-line flex fl-align fz-10">
-						<span class="exit c-00">退出</span>
-						<span class="change c-ff">交班</span>
+					<div class="Btn-line flex fl-align fl-jsd fz-10">
+						<span class="exit c-00 t-ac">退出</span>
+						<span class="change c-ff t-ac">交班</span>
 					</div>
 				</div>
 			</div>
 			<!-- 店铺信息 -->
+			<div class="tabs flex col" v-if="choices==1">
+				<div class="tab-top flex fl-align fl-jsd b-9F fz-10">
+					<span class="c-ff">店铺信息</span>
+					<span class="save-btn b-ff fz-7 t-ac">保存</span>
+				</div>
+				<div class="tab-content b-ff">
+					<div class="infos b-C0 flex col">
+						<div class="line-type-two fz-7 flex fl-align">
+							<span class="c-00">关联店铺</span>
+							<span style="width: 1.2rem;margin-right: 0.25rem;" class="fz-7">暂无关联店铺信息</span>
+							<span class="c-ff t-ac"
+								style="background: #003399;width: 0.28rem;height: 0.12rem;line-height: 0.12rem;border-radius: 0.02rem;">编辑</span>
+						</div>
+						<div class="line-type-two flex fl-align fz-7 c-00">
+							<span>店铺名称</span>
+							<span>点佳</span>
+						</div>
+						<div class="line-type-two flex fl-align fz-7 c-00">
+							<span>店铺类型</span>
+							<span>柜台型</span>
+						</div>
+						<div class="line-type-two fz-7 flex fl-align">
+							<span class="c-00">营业时间</span>
+							<span>选择营业时间</span>
+						</div>
+						<div class="line-type-two fz-7 flex fl-align">
+							<span class="c-00">店铺电话</span>
+							<input type="text" placeholder="输入店铺电话" class="input-line b-C0 fz-7">
+						</div>
+						<div class="line-type-two fz-7 flex fl-align">
+							<span class="c-00">店铺地址</span>
+							<input type="text" placeholder="输入店铺地址" class="input-line b-C0 fz-7">
+						</div>
+						<div class="line-type-two fz-7 flex fl-align">
+							<span class="c-00">店铺描述</span>
+							<input type="text" placeholder="输入店铺欢迎语，最新活动内容，最长100字" class="input-line b-C0 fz-7"
+								maxlength="100">
+						</div>
+						<div class="line-type-two fz-7 flex">
+							<span class="c-00" style="padding-top: 0.019rem;">店铺二维码</span>
+							<div>
+								<div class="flex fl-align" style="margin-bottom: 0.04rem;">
+									<input type="text" placeholder="输入会员码的地址" class="fz-7 b-C0"
+										style="width: 1.4rem;height: 0.12rem;margin-right: 0.03rem;">
+									<span class="fz-7" style="color:#0066CC;">会员码</span>
+								</div>
+								<div class="flex fl-align">
+									<input type="text" placeholder="输入二维码的地址" class="fz-7 b-C0"
+										style="width: 1.4rem;height: 0.12rem;margin-right: 0.03rem;">
+									<span class="fz-7" style="color:#0066CC;">二维码</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- 员工管理 -->
+			<div class="tabs flex col fl-align" v-if="choices==2">
+				<div class="tab-top flex fl-align b-9F fl-jsd fz-10">
+					<span class="c-ff">员工管理</span>
+					<span class="add-btn fz-7 t-ac b-ff c-6C">添加</span>
+				</div>
+				<div class="tab-content flex col fl-align">
+					<div class="tables b-ff">
+						<table style="width: 100%;">
+							<thead style="border-bottom: 0.001rem solid rgb(153, 153, 153);">
+								<tr class="fz-7">
+									<th>姓名</th>
+									<th>账号</th>
+									<th>手机号</th>
+									<th>创建时间</th>
+									<th>职位</th>
+								</tr>
+							</thead>
+							<tbody id="tbody">
+								<tr class="fz-7">
+									<td>创建者</td>
+									<td>1000</td>
+									<td>13868367595</td>
+									<td>2019 11-26 14：30</td>
+									<td>店长</td>
+								</tr>
+								<tr class="fz-7">
+									<td>创建者s</td>
+									<td>1000</td>
+									<td>13868367595</td>
+									<td>2019 11-26 14：30</td>
+									<td>收银员</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 			<!-- 收款方式 -->
+			<div class="tabs flex col" v-if="choices==3">
+				<div class="tab-top b-9F fl-jsd fz-10 flex fl-align">
+					<span class="c-ff">支付方式</span>
+					<span class="sort t-ac b-ff c-6C fz-7">排序</span>
+					<span class="add t-ac b-ff fz-7 c-6C">添加</span>
+				</div>
+				<div class="tab-content flex col b-ff">
+					<div class="fz-7 c-00" style="margin: 0.04rem 0px 0rem 0.05rem;">您可以开启或者添加店内常用的收款方式</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">现金</span>
+							<span>顾客使用现金付款时试用。（仅记账，不涉及与本平台结算）</span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">会员卡</span>
+							<span>顾客使用会员卡(仅限本平台创建)付款时试用，自动扣减对应金额</span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">挂账</span>
+							<span>挂账</span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">信用卡</span>
+							<span>顾客使用信用卡付款时使用。(仅记账，不涉及与本平台结算)</span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">现金券</span>
+							<span>顾客使用现金券付款时使用。(仅记账，不涉及与本平台结算)</span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">混合支付</span>
+							<span>顾客使用多种付款方式付款时使用。</span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">扫码收款</span>
+							<span>顾客使用微信和支付宝付款时使用，商家可前往想米公众号进行提现，<span class="c-6C">查看提现说明</span></span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">收款码</span>
+							<span>顾客使用微信或支付宝扫描本店台卡收款码付款时使用，<span class="c-6C">查看提现说明</span></span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">微信(标记)</span>
+							<span>商家使用非本平台的微信收款码收款。(仅记账，不涉及与本平台结算)</span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">支付宝(标记)</span>
+							<span>商家使用非本平台的支付宝收款码收款。(仅记账，不涉及与本平台结算)</span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">微信(标记)</span>
+							<span>顾客使用现金券付款时使用。(仅记账，不涉及与本平台结算)</span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">云闪付(标记)</span>
+							<span>商家使用非本平台的云闪付收款码收款。(仅记账，不涉及与本平台结算)</span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+					<div class="pay-list-item flex fl-align">
+						<div class="left flex col fz-7">
+							<span class="c-00">翼支付(标记)</span>
+							<span>商家使用非本平台的翼支付收款码收款。(仅记账，不涉及与本平台结算)</span>
+						</div>
+						<div class="right flex fl-align">
+							<van-switch v-model="checked" />
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- 外卖 -->
 			<!-- 扫码点餐 -->
 			<!-- 副屏广告 -->

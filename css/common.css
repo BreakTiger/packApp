@@ -139,6 +139,11 @@ input {
 }
 
 
+.t-ac{
+    text-align: center;
+}
+
+
 /* 表格 */
 table {
     border-collapse: collapse;
@@ -154,6 +159,7 @@ table {
 .van-stepper__input{
     color: #0066CC !important;
 }
+
 
 /* 超出部分省略号 */
 .clamp1 {
